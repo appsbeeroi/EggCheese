@@ -1,0 +1,17 @@
+name: EggCheese
+options:
+  bundleIdPrefix: com.example
+  deploymentTarget:
+    iOS: "16.0"
+targets:
+  EggCheese:
+    type: application
+    platform: iOS
+    bundleId: com.example.EggCheese
+    sources:
+      - EggCheese
+    resources:
+      - EggCheese/Assets.xcassets
+    settings:
+      base:
+        INFOPLIST_FILE: EggCheese/Info.plist

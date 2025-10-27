@@ -1,0 +1,388 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 63;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0353F3CF2BD3468080A63B4E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6233E3C4C2AB1E7421DC406B /* ContentView.swift */; };
+		1F30FAF81B24212B1D7D8F1A /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 098A8DB33B2D7B4871C10CAE /* RecipesView.swift */; };
+		20F4EF0483B623076B30D96E /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A85A122F4B69438E55CF658 /* RecipeDetailView.swift */; };
+		22D30553845B67BE184C155B /* BatchCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2E570C18B5082473B10F122 /* BatchCardView.swift */; };
+		2DAFC0FFE9D8E997BE54D76C /* RestraintCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F64C133B234ED350E78A54 /* RestraintCardView.swift */; };
+		34BCEC1587B7237F3901318E /* EggCheeseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91931C3E14AAC8EF4BFBF56E /* EggCheeseApp.swift */; };
+		3AF6BB496FE98D2EF6B8C22A /* AddRestraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1683D254C25AA8C0D837D9 /* AddRestraintView.swift */; };
+		45B039E925E280DED9ED8CD9 /* RestraintData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466018D4B828A8D95C50D66A /* RestraintData.swift */; };
+		4FC24C3CC5062F6CAB6F3F6B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C36C186013E41244CA4B414 /* MainTabView.swift */; };
+		6665042DB04DAA7783240050 /* RestraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D6C1D04C8C29DBC6E02DA /* RestraintView.swift */; };
+		7FD0F08AC7383C4AC48E5D05 /* BatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B4220B9E14D4E7A57AC85 /* BatchDetailView.swift */; };
+		8A0902740FA58125CCF10F27 /* AddBatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A087CF8A1141D6AF929BA27F /* AddBatchView.swift */; };
+		8CD82AD7DA3E324379187529 /* AboutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 798279E75FDDDA27E7184AC6 /* AboutView.swift */; };
+		8DD08881AD8C60622F19EEF8 /* RestraintDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7B688E481BD1D6F2FE357FD /* RestraintDetailView.swift */; };
+		92C098B8F10FE36A762204FD /* BathView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5420CD878267E8119357584 /* BathView.swift */; };
+		A5C1C7843D8622EACE7420A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9B9B7AEE009ACF3437AD4D7E /* Assets.xcassets */; };
+		AB9FE71508F29D003BF6895E /* RecipeCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4701AF943769CAD6AF200EB3 /* RecipeCardView.swift */; };
+		B1B8EE1AED3D75EB2DE9885C /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 091DF83F2D11543605E5F916 /* Recipe.swift */; };
+		C6348D8AE79327CC2DFDA67D /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D5A95F816C481BCB0C420 /* Batch.swift */; };
+		DFE8347C84594ECF4CA2A1FB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC1C2288A275A056089089 /* SettingsView.swift */; };
+		E0D7BCE9BB08101846B65FDE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252473271AE946C0E159CDDE /* LoadingView.swift */; };
+		F2500FA8B161F98F91A1FF41 /* AddRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EA20E89B0CBE5C26481E5 /* AddRecipeView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		091DF83F2D11543605E5F916 /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
+		098A8DB33B2D7B4871C10CAE /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
+		17B58159A18B98A19FF88539 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		252473271AE946C0E159CDDE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		2D1D5A95F816C481BCB0C420 /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
+		3A85A122F4B69438E55CF658 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		40F64C133B234ED350E78A54 /* RestraintCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestraintCardView.swift; sourceTree = "<group>"; };
+		466018D4B828A8D95C50D66A /* RestraintData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestraintData.swift; sourceTree = "<group>"; };
+		4701AF943769CAD6AF200EB3 /* RecipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCardView.swift; sourceTree = "<group>"; };
+		525B4220B9E14D4E7A57AC85 /* BatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchDetailView.swift; sourceTree = "<group>"; };
+		527EA20E89B0CBE5C26481E5 /* AddRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
+		6233E3C4C2AB1E7421DC406B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		6C36C186013E41244CA4B414 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
+		798279E75FDDDA27E7184AC6 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
+		8F1683D254C25AA8C0D837D9 /* AddRestraintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRestraintView.swift; sourceTree = "<group>"; };
+		91931C3E14AAC8EF4BFBF56E /* EggCheeseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EggCheeseApp.swift; sourceTree = "<group>"; };
+		9B9B7AEE009ACF3437AD4D7E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A087CF8A1141D6AF929BA27F /* AddBatchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBatchView.swift; sourceTree = "<group>"; };
+		A7B688E481BD1D6F2FE357FD /* RestraintDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestraintDetailView.swift; sourceTree = "<group>"; };
+		D5420CD878267E8119357584 /* BathView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BathView.swift; sourceTree = "<group>"; };
+		DCFC1C2288A275A056089089 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E0B4C3942FC922578973F275 /* EggCheese.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EggCheese.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E2E570C18B5082473B10F122 /* BatchCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchCardView.swift; sourceTree = "<group>"; };
+		F81D6C1D04C8C29DBC6E02DA /* RestraintView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestraintView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		8A863B8A1BA565EF57868E9C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E0B4C3942FC922578973F275 /* EggCheese.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E9195ADDC3D32ACF4B277D5E /* EggCheese */ = {
+			isa = PBXGroup;
+			children = (
+				798279E75FDDDA27E7184AC6 /* AboutView.swift */,
+				A087CF8A1141D6AF929BA27F /* AddBatchView.swift */,
+				527EA20E89B0CBE5C26481E5 /* AddRecipeView.swift */,
+				8F1683D254C25AA8C0D837D9 /* AddRestraintView.swift */,
+				9B9B7AEE009ACF3437AD4D7E /* Assets.xcassets */,
+				2D1D5A95F816C481BCB0C420 /* Batch.swift */,
+				E2E570C18B5082473B10F122 /* BatchCardView.swift */,
+				525B4220B9E14D4E7A57AC85 /* BatchDetailView.swift */,
+				D5420CD878267E8119357584 /* BathView.swift */,
+				6233E3C4C2AB1E7421DC406B /* ContentView.swift */,
+				91931C3E14AAC8EF4BFBF56E /* EggCheeseApp.swift */,
+				17B58159A18B98A19FF88539 /* Info.plist */,
+				252473271AE946C0E159CDDE /* LoadingView.swift */,
+				6C36C186013E41244CA4B414 /* MainTabView.swift */,
+				091DF83F2D11543605E5F916 /* Recipe.swift */,
+				4701AF943769CAD6AF200EB3 /* RecipeCardView.swift */,
+				3A85A122F4B69438E55CF658 /* RecipeDetailView.swift */,
+				098A8DB33B2D7B4871C10CAE /* RecipesView.swift */,
+				40F64C133B234ED350E78A54 /* RestraintCardView.swift */,
+				466018D4B828A8D95C50D66A /* RestraintData.swift */,
+				A7B688E481BD1D6F2FE357FD /* RestraintDetailView.swift */,
+				F81D6C1D04C8C29DBC6E02DA /* RestraintView.swift */,
+				DCFC1C2288A275A056089089 /* SettingsView.swift */,
+			);
+			path = EggCheese;
+			sourceTree = "<group>";
+		};
+		EEDBC246E359A99B6C6275F7 = {
+			isa = PBXGroup;
+			children = (
+				E9195ADDC3D32ACF4B277D5E /* EggCheese */,
+				8A863B8A1BA565EF57868E9C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1C9B1D137C1AC101F828B11 /* EggCheese */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1D6A059E8975DE1131863138 /* Build configuration list for PBXNativeTarget "EggCheese" */;
+			buildPhases = (
+				8F2EE1106E0A7567BF62D07E /* Sources */,
+				BB5D4BE9EFA7C3B462FA9F8C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = EggCheese;
+			packageProductDependencies = (
+			);
+			productName = EggCheese;
+			productReference = E0B4C3942FC922578973F275 /* EggCheese.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		170166AB901FC9018D41EC3A /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
+			};
+			buildConfigurationList = 69D48B15F8C048184B7CC26F /* Build configuration list for PBXProject "EggCheese" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = EEDBC246E359A99B6C6275F7;
+			minimizedProjectReferenceProxies = 1;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A1C9B1D137C1AC101F828B11 /* EggCheese */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		BB5D4BE9EFA7C3B462FA9F8C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5C1C7843D8622EACE7420A0 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8F2EE1106E0A7567BF62D07E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8CD82AD7DA3E324379187529 /* AboutView.swift in Sources */,
+				8A0902740FA58125CCF10F27 /* AddBatchView.swift in Sources */,
+				F2500FA8B161F98F91A1FF41 /* AddRecipeView.swift in Sources */,
+				3AF6BB496FE98D2EF6B8C22A /* AddRestraintView.swift in Sources */,
+				C6348D8AE79327CC2DFDA67D /* Batch.swift in Sources */,
+				22D30553845B67BE184C155B /* BatchCardView.swift in Sources */,
+				7FD0F08AC7383C4AC48E5D05 /* BatchDetailView.swift in Sources */,
+				92C098B8F10FE36A762204FD /* BathView.swift in Sources */,
+				0353F3CF2BD3468080A63B4E /* ContentView.swift in Sources */,
+				34BCEC1587B7237F3901318E /* EggCheeseApp.swift in Sources */,
+				E0D7BCE9BB08101846B65FDE /* LoadingView.swift in Sources */,
+				4FC24C3CC5062F6CAB6F3F6B /* MainTabView.swift in Sources */,
+				B1B8EE1AED3D75EB2DE9885C /* Recipe.swift in Sources */,
+				AB9FE71508F29D003BF6895E /* RecipeCardView.swift in Sources */,
+				20F4EF0483B623076B30D96E /* RecipeDetailView.swift in Sources */,
+				1F30FAF81B24212B1D7D8F1A /* RecipesView.swift in Sources */,
+				2DAFC0FFE9D8E997BE54D76C /* RestraintCardView.swift in Sources */,
+				45B039E925E280DED9ED8CD9 /* RestraintData.swift in Sources */,
+				8DD08881AD8C60622F19EEF8 /* RestraintDetailView.swift in Sources */,
+				6665042DB04DAA7783240050 /* RestraintView.swift in Sources */,
+				DFE8347C84594ECF4CA2A1FB /* SettingsView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		410AD9F587C377EBD662FBFA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = EggCheese/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.EggCheese;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		68642FEE1C9219B75CC8C40C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		C767D5866B7EB8C40DD801BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = EggCheese/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.example.EggCheese;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		D97924124368D7D695CF6F60 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1D6A059E8975DE1131863138 /* Build configuration list for PBXNativeTarget "EggCheese" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C767D5866B7EB8C40DD801BB /* Debug */,
+				410AD9F587C377EBD662FBFA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		69D48B15F8C048184B7CC26F /* Build configuration list for PBXProject "EggCheese" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D97924124368D7D695CF6F60 /* Debug */,
+				68642FEE1C9219B75CC8C40C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 170166AB901FC9018D41EC3A /* Project object */;
+}
