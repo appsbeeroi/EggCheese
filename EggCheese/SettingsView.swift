@@ -22,6 +22,9 @@ struct SettingsView: View {
                         .foregroundColor(.white)
                         .padding(.top, 80)
 
+                    Spacer()
+                        .frame(height: 40)
+
                     VStack(spacing: 15) {
                             
                             NavigationLink(destination: AboutView()) {
