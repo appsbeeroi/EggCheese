@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct SettingsView: View {
-    @State private var notificationsEnabled = true
     @State private var showingClearHistoryAlert = false
     @StateObject private var batchManager = BatchManager()
     @StateObject private var recipeManager = RecipeManager()
     @StateObject private var restraintManager = RestraintManager()
+    @EnvironmentObject var notificationManager: NotificationManager
     
     var body: some View {
         NavigationStack {
@@ -55,16 +55,45 @@ struct SettingsView: View {
                             .buttonStyle(PlainButtonStyle())
                         
                         // Notification
-                        HStack {
-                            Text("Notification")
-                                .font(.title3)
-                                .bold()
-                                .foregroundColor(.black)
+                        VStack(spacing: 10) {
+                            HStack {
+                                Text("Notification")
+                                    .font(.title3)
+                                    .bold()
+                                    .foregroundColor(.black)
+                                
+                                Spacer()
+                                
+                                if notificationManager.canRequestPermission {
+                                    Button("Enable") {
+                                        notificationManager.requestPermission()
+                                    }
+                                    .foregroundColor(.blue)
+                                    .font(.headline)
+                                } else if notificationManager.isAuthorized {
+                                    Toggle("", isOn: .constant(true))
+                                        .toggleStyle(SwitchToggleStyle(tint: .yellow))
+                                        .disabled(true)
+                                } else {
+                                    Button("Settings") {
+                                        notificationManager.openSettings()
+                                    }
+                                    .foregroundColor(.blue)
+                                    .font(.headline)
+                                }
+                            }
                             
-                            Spacer()
-                            
-                            Toggle("", isOn: $notificationsEnabled)
-                                .toggleStyle(SwitchToggleStyle(tint: .yellow))
+                            if notificationManager.authorizationStatus == .denied {
+                                Text("Notifications are disabled. Enable them in Settings to receive alerts.")
+                                    .font(.caption)
+                                    .foregroundColor(.red)
+                                    .multilineTextAlignment(.leading)
+                            } else if notificationManager.authorizationStatus == .notDetermined {
+                                Text("Tap 'Enable' to allow notifications for batch reminders.")
+                                    .font(.caption)
+                                    .foregroundColor(.gray)
+                                    .multilineTextAlignment(.leading)
+                            }
                         }
                         .padding()
                         .background(Color.white)
@@ -125,4 +154,5 @@ struct SettingsView: View {
 
 #Preview {
     SettingsView()
+        .environmentObject(NotificationManager())
 }

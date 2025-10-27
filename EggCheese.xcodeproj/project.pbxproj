@@ -16,6 +16,7 @@
 		3AF6BB496FE98D2EF6B8C22A /* AddRestraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F1683D254C25AA8C0D837D9 /* AddRestraintView.swift */; };
 		45B039E925E280DED9ED8CD9 /* RestraintData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466018D4B828A8D95C50D66A /* RestraintData.swift */; };
 		4FC24C3CC5062F6CAB6F3F6B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C36C186013E41244CA4B414 /* MainTabView.swift */; };
+		5F1C8E852EAF61BB004706C2 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C8E842EAF61BB004706C2 /* NotificationManager.swift */; };
 		6665042DB04DAA7783240050 /* RestraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D6C1D04C8C29DBC6E02DA /* RestraintView.swift */; };
 		7FD0F08AC7383C4AC48E5D05 /* BatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B4220B9E14D4E7A57AC85 /* BatchDetailView.swift */; };
 		8A0902740FA58125CCF10F27 /* AddBatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A087CF8A1141D6AF929BA27F /* AddBatchView.swift */; };
@@ -44,6 +45,7 @@
 		525B4220B9E14D4E7A57AC85 /* BatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchDetailView.swift; sourceTree = "<group>"; };
 		527EA20E89B0CBE5C26481E5 /* AddRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
 		5F1C8E832EAF6110004706C2 /* EggCheese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EggCheese.entitlements; sourceTree = "<group>"; };
+		5F1C8E842EAF61BB004706C2 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		6233E3C4C2AB1E7421DC406B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6C36C186013E41244CA4B414 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		798279E75FDDDA27E7184AC6 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				A7B688E481BD1D6F2FE357FD /* RestraintDetailView.swift */,
 				F81D6C1D04C8C29DBC6E02DA /* RestraintView.swift */,
 				DCFC1C2288A275A056089089 /* SettingsView.swift */,
+				5F1C8E842EAF61BB004706C2 /* NotificationManager.swift */,
 			);
 			path = EggCheese;
 			sourceTree = "<group>";
@@ -175,6 +178,7 @@
 				8A0902740FA58125CCF10F27 /* AddBatchView.swift in Sources */,
 				F2500FA8B161F98F91A1FF41 /* AddRecipeView.swift in Sources */,
 				3AF6BB496FE98D2EF6B8C22A /* AddRestraintView.swift in Sources */,
+				5F1C8E852EAF61BB004706C2 /* NotificationManager.swift in Sources */,
 				C6348D8AE79327CC2DFDA67D /* Batch.swift in Sources */,
 				22D30553845B67BE184C155B /* BatchCardView.swift in Sources */,
 				7FD0F08AC7383C4AC48E5D05 /* BatchDetailView.swift in Sources */,
