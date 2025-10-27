@@ -2,9 +2,16 @@ import SwiftUI
 
 struct BatchDetailView: View {
     let batch: Batch
-    let index: Int
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var batchManager: BatchManager
     @State private var showingDeleteAlert = false
+    
+    private var batchIndex: Int? {
+        let index = batchManager.batches.firstIndex { $0.name == batch.name }
+        print("🔍 BatchDetailView: Looking for batch '\(batch.name)', found index: \(index ?? -1)")
+        print("🔍 BatchDetailView: Total batches: \(batchManager.batches.count)")
+        return index
+    }
     
     var body: some View {
         ZStack {
@@ -33,10 +40,12 @@ struct BatchDetailView: View {
                     Spacer()
 
                     HStack(spacing: 15) {
-                        NavigationLink(destination: AddBatchView(editingBatch: batch, editingIndex: index)) {
-                            Text("Edit")
-                                .foregroundColor(.blue)
-                                .font(.anton(.headline))
+                        if let index = batchIndex {
+                            NavigationLink(destination: AddBatchView(editingBatch: batch, editingIndex: index).environmentObject(batchManager)) {
+                                Text("Edit")
+                                    .foregroundColor(.blue)
+                                    .font(.anton(.headline))
+                            }
                         }
                         
                         Button(action: { showingDeleteAlert = true }) {
@@ -100,8 +109,9 @@ struct BatchDetailView: View {
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
-                
-                deleteBatchByIndex(index)
+                if let index = batchIndex {
+                    deleteBatchByIndex(index)
+                }
                 
                 NotificationCenter.default.post(name: NSNotification.Name("BatchDeleted"), object: nil)
                 dismiss()
@@ -144,5 +154,6 @@ struct BatchDetailView: View {
         volume: "8 kg",
         status: "In production",
         notes: "Added a bit of sea salt"
-    ), index: 1)
+    ))
+    .environmentObject(BatchManager())
 }

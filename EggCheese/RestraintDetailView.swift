@@ -2,9 +2,13 @@ import SwiftUI
 
 struct RestraintDetailView: View {
     let data: RestraintData
-    let index: Int
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var restraintManager: RestraintManager
     @State private var showingDeleteAlert = false
+    
+    private var restraintIndex: Int? {
+        restraintManager.restraintData.firstIndex { $0.name == data.name && $0.date == data.date && $0.restraintPeriod == data.restraintPeriod }
+    }
     
     var body: some View {
         ZStack {
@@ -33,10 +37,12 @@ struct RestraintDetailView: View {
                     Spacer()
 
                     HStack(spacing: 15) {
-                        NavigationLink(destination: AddRestraintView(editingData: data, editingIndex: index)) {
-                            Text("Edit")
-                                .foregroundColor(.blue)
-                                .font(.anton(.headline))
+                        if let index = restraintIndex {
+                            NavigationLink(destination: AddRestraintView(editingData: data, editingIndex: index).environmentObject(restraintManager)) {
+                                Text("Edit")
+                                    .foregroundColor(.blue)
+                                    .font(.anton(.headline))
+                            }
                         }
                         
                         Button(action: { showingDeleteAlert = true }) {
@@ -164,5 +170,6 @@ struct RestraintDetailView: View {
         readinessDate: Calendar.current.date(byAdding: .day, value: 30, to: Date()) ?? Date(),
         notes: "Track ripening progress",
         status: "In production"
-    ), index: 0)
+    ))
+    .environmentObject(RestraintManager())
 }

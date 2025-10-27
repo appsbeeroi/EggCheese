@@ -2,10 +2,14 @@ import SwiftUI
 
 struct RecipeDetailView: View {
     @Environment(\.dismiss) private var dismiss
+    @EnvironmentObject var recipeManager: RecipeManager
     let recipe: Recipe
-    let index: Int
     
     @State private var showingDeleteAlert = false
+    
+    private var recipeIndex: Int? {
+        recipeManager.recipes.firstIndex { $0.name == recipe.name && $0.ingredients == recipe.ingredients }
+    }
     
     var body: some View {
         ZStack {
@@ -34,10 +38,12 @@ struct RecipeDetailView: View {
                     Spacer()
 
                     HStack(spacing: 15) {
-                        NavigationLink(destination: AddRecipeView(editingRecipe: recipe, editingIndex: index)) {
-                            Text("Edit")
-                                .foregroundColor(.blue)
-                                .font(.anton(.headline))
+                        if let index = recipeIndex {
+                            NavigationLink(destination: AddRecipeView(editingRecipe: recipe, editingIndex: index).environmentObject(recipeManager)) {
+                                Text("Edit")
+                                    .foregroundColor(.blue)
+                                    .font(.anton(.headline))
+                            }
                         }
                         
                         Button(action: { showingDeleteAlert = true }) {
@@ -161,5 +167,6 @@ struct RecipeDetailView: View {
         ingredients: ["Goat milk 8 L", "Rennet 0.5 tsp", "Salt 30 g"],
         preparationSteps: ["Heat milk", "Add rennet", "Mold", "Age"],
         notes: "Very delicate texture"
-    ), index: 0)
+    ))
+    .environmentObject(RecipeManager())
 }

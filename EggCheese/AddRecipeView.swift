@@ -5,7 +5,7 @@ struct AddRecipeView: View {
     let editingIndex: Int?
     
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var recipeManager = RecipeManager()
+    @EnvironmentObject var recipeManager: RecipeManager
     @State private var name = ""
     @State private var ingredientsText = ""
     @State private var preparationStepsText = ""

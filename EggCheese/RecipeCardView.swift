@@ -2,10 +2,10 @@ import SwiftUI
 
 struct RecipeCardView: View {
     let recipe: Recipe
-    let index: Int
+    @EnvironmentObject var recipeManager: RecipeManager
     
     var body: some View {
-        NavigationLink(destination: RecipeDetailView(recipe: recipe, index: index)) {
+        NavigationLink(destination: RecipeDetailView(recipe: recipe).environmentObject(recipeManager)) {
             HStack(spacing: 0) {
                 
                 ZStack {
@@ -43,5 +43,6 @@ struct RecipeCardView: View {
         ingredients: ["Goat milk 8 L", "Rennet 0.5 tsp", "Salt 30 g"],
         preparationSteps: ["Heat milk", "Add rennet", "Mold", "Age"],
         notes: "Very delicate texture"
-    ), index: 0)
+    ))
+    .environmentObject(RecipeManager())
 }

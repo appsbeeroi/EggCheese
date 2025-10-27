@@ -32,7 +32,7 @@ struct RecipesView: View {
                                 .foregroundColor(.brown)
                                 .multilineTextAlignment(.center)
                             
-                            NavigationLink(destination: AddRecipeView()) {
+                            NavigationLink(destination: AddRecipeView().environmentObject(recipeManager)) {
                                 Text("Add recipe")
                                     .font(.anton(.headline))
                                     .foregroundColor(.brown)
@@ -51,11 +51,12 @@ struct RecipesView: View {
                         
                         ScrollView {
                             LazyVStack(spacing: 15) {
-                                ForEach(Array(recipeManager.recipes.enumerated()), id: \.element.id) { index, recipe in
-                                    RecipeCardView(recipe: recipe, index: index)
+                                ForEach(recipeManager.recipes, id: \.id) { recipe in
+                                    RecipeCardView(recipe: recipe)
+                                        .environmentObject(recipeManager)
                                 }
 
-                                NavigationLink(destination: AddRecipeView()) {
+                                NavigationLink(destination: AddRecipeView().environmentObject(recipeManager)) {
                                     Text("Add recipe")
                                         .font(.anton(.headline))
                                         .foregroundColor(.brown)

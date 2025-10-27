@@ -5,7 +5,7 @@ struct AddBatchView: View {
     let editingIndex: Int?
     
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var batchManager = BatchManager()
+    @EnvironmentObject var batchManager: BatchManager
     @State private var name = ""
     @State private var date = Date()
     @State private var cheeseType = ""
@@ -123,20 +123,40 @@ struct AddBatchView: View {
                                         .font(.anton(.headline))
                                         .foregroundColor(.brown)
                                     
-                                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 10) {
-                                        ForEach(cheeseTypes, id: \.self) { type in
-                                            Button(action: { cheeseType = type }) {
-                                                Text(type)
-                                                    .font(.anton(.body))
-                                                    .foregroundColor(cheeseType == type ? .white : .brown)
-                                                    .padding(.horizontal, 16)
-                                                    .padding(.vertical, 12)
-                                                    .background(cheeseType == type ? Color.brown : Color.white)
-                                                    .cornerRadius(20)
-                                                    .overlay(
-                                                        RoundedRectangle(cornerRadius: 20)
-                                                            .stroke(Color.brown, lineWidth: cheeseType == type ? 0 : 2)
-                                                    )
+                                    VStack(spacing: 10) {
+                                        HStack(spacing: 10) {
+                                            ForEach(Array(cheeseTypes.prefix(2)), id: \.self) { type in
+                                                Button(action: { cheeseType = type }) {
+                                                    Text(type)
+                                                        .font(.anton(.body))
+                                                        .foregroundColor(cheeseType == type ? .white : .brown)
+                                                        .padding(.horizontal, 16)
+                                                        .padding(.vertical, 12)
+                                                        .background(cheeseType == type ? Color.brown : Color.white)
+                                                        .cornerRadius(20)
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: 20)
+                                                                .stroke(Color.brown, lineWidth: cheeseType == type ? 0 : 2)
+                                                        )
+                                                }
+                                            }
+                                        }
+                                        
+                                        HStack(spacing: 10) {
+                                            ForEach(Array(cheeseTypes.dropFirst(2)), id: \.self) { type in
+                                                Button(action: { cheeseType = type }) {
+                                                    Text(type)
+                                                        .font(.anton(.body))
+                                                        .foregroundColor(cheeseType == type ? .white : .brown)
+                                                        .padding(.horizontal, 16)
+                                                        .padding(.vertical, 12)
+                                                        .background(cheeseType == type ? Color.brown : Color.white)
+                                                        .cornerRadius(20)
+                                                        .overlay(
+                                                            RoundedRectangle(cornerRadius: 20)
+                                                                .stroke(Color.brown, lineWidth: cheeseType == type ? 0 : 2)
+                                                        )
+                                                }
                                             }
                                         }
                                     }
@@ -190,46 +210,48 @@ struct AddBatchView: View {
                                 .cornerRadius(25)
                             }
 
-                            HStack(spacing: 15) {
+                            VStack(spacing: 15) {
                                 
                                 Button(action: { selectedStatus = "In production" }) {
-                                    VStack(spacing: 8) {
+                                    VStack(spacing: 12) {
                                         Image("inProdImage")
                                             .resizable()
-                                            .frame(width: 30, height: 30)
+                                            .frame(width: 40, height: 40)
 
                                         Text("In production")
-                                            .font(.anton(.body))
-                                            .foregroundColor(selectedStatus == "In production" ? .white : .brown)
+                                            .font(.anton(.headline))
+                                            .foregroundColor(.brown)
                                     }
                                     .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 12)
-                                    .background(selectedStatus == "In production" ? Color.brown : Color.white)
+                                    .padding(.vertical, 20)
+                                    .background(Color.white)
                                     .cornerRadius(20)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.brown, lineWidth: selectedStatus == "In production" ? 0 : 2)
+                                            .stroke(selectedStatus == "In production" ? Color.brown : Color.clear, lineWidth: 3)
                                     )
+                                    .shadow(color: selectedStatus == "In production" ? Color.brown.opacity(0.3) : Color.clear, radius: 5, x: 0, y: 2)
                                 }
 
                                 Button(action: { selectedStatus = "Ready" }) {
-                                    VStack(spacing: 8) {
+                                    VStack(spacing: 12) {
                                         Image("readyImage")
                                             .resizable()
-                                            .frame(width: 30, height: 30)
+                                            .frame(width: 40, height: 40)
 
                                         Text("Ready")
-                                            .font(.anton(.body))
-                                            .foregroundColor(selectedStatus == "Ready" ? .white : .brown)
+                                            .font(.anton(.headline))
+                                            .foregroundColor(.brown)
                                     }
                                     .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 12)
-                                    .background(selectedStatus == "Ready" ? Color.brown : Color.white)
+                                    .padding(.vertical, 20)
+                                    .background(Color.white)
                                     .cornerRadius(20)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.brown, lineWidth: selectedStatus == "Ready" ? 0 : 2)
+                                            .stroke(selectedStatus == "Ready" ? Color.brown : Color.clear, lineWidth: 3)
                                     )
+                                    .shadow(color: selectedStatus == "Ready" ? Color.brown.opacity(0.3) : Color.clear, radius: 5, x: 0, y: 2)
                                 }
                             }
 
@@ -338,6 +360,10 @@ struct AddBatchView: View {
         }
                 .navigationBarHidden(true)
                 .onAppear {
+                    print("🔍 AddBatchView: onAppear called")
+                    print("🔍 AddBatchView: editingBatch: \(editingBatch?.name ?? "nil")")
+                    print("🔍 AddBatchView: editingIndex: \(editingIndex ?? -1)")
+                    
                     if let editingBatch = editingBatch {
                         name = editingBatch.name
                         date = editingBatch.date
@@ -346,6 +372,8 @@ struct AddBatchView: View {
                         volume = editingBatch.volume
                         selectedStatus = editingBatch.status
                         notes = editingBatch.notes
+                        
+                        print("🔍 AddBatchView: Form populated with batch data")
                     }
                     
                     NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
@@ -367,6 +395,9 @@ struct AddBatchView: View {
     }
     
     private func saveBatch() {
+        print("🔍 AddBatchView: saveBatch called")
+        print("🔍 AddBatchView: editingIndex: \(editingIndex ?? -1)")
+        
         let newBatch = Batch(
             name: name,
             date: date,
@@ -378,9 +409,11 @@ struct AddBatchView: View {
         )
 
         if let editingIndex = editingIndex {
+            print("🔍 AddBatchView: Updating batch at index \(editingIndex)")
             batchManager.updateBatch(at: editingIndex, with: newBatch)
             NotificationCenter.default.post(name: NSNotification.Name("BatchUpdated"), object: nil)
         } else {
+            print("🔍 AddBatchView: Adding new batch")
             batchManager.addBatch(newBatch)
             NotificationCenter.default.post(name: NSNotification.Name("BatchAdded"), object: nil)
         }

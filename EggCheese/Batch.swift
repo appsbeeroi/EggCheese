@@ -42,9 +42,16 @@ class BatchManager: ObservableObject {
     }
     
     func updateBatch(at index: Int, with newBatch: Batch) {
+        print("🔍 BatchManager: updateBatch called with index \(index)")
+        print("🔍 BatchManager: batches count: \(batches.count)")
+        
         if index < batches.count {
+            print("🔍 BatchManager: Updating batch at index \(index)")
             batches[index] = newBatch
             saveBatches()
+            print("🔍 BatchManager: Batch updated successfully")
+        } else {
+            print("🔍 BatchManager: ERROR - Index \(index) is out of bounds!")
         }
     }
     

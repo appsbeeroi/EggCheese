@@ -2,10 +2,10 @@ import SwiftUI
 
 struct BatchCardView: View {
     let batch: Batch
-    let index: Int
+    @EnvironmentObject var batchManager: BatchManager
     
     var body: some View {
-        NavigationLink(destination: BatchDetailView(batch: batch, index: index)) {
+        NavigationLink(destination: BatchDetailView(batch: batch).environmentObject(batchManager)) {
             HStack(spacing: 15) {
                 
                 VStack(spacing: 8) {
@@ -52,5 +52,6 @@ struct BatchCardView: View {
         volume: "8 kg",
         status: "In production",
         notes: "Added a bit of sea salt"
-    ), index: 0)
+    ))
+    .environmentObject(BatchManager())
 }

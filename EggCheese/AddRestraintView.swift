@@ -5,7 +5,7 @@ struct AddRestraintView: View {
     let editingIndex: Int?
     
     @Environment(\.dismiss) private var dismiss
-    @StateObject private var restraintManager = RestraintManager()
+    @EnvironmentObject var restraintManager: RestraintManager
     @State private var name = ""
     @State private var date = Date()
     @State private var restraintPeriod = ""
@@ -157,44 +157,46 @@ struct AddRestraintView: View {
                                 }
                             }
 
-                            HStack(spacing: 15) {
+                            VStack(spacing: 15) {
                                 
                                 Button(action: { selectedStatus = "In production" }) {
-                                    VStack(spacing: 8) {
+                                    VStack(spacing: 12) {
                                         Image("inProdImage")
                                             .resizable()
-                                            .frame(width: 30, height: 30)
+                                            .frame(width: 40, height: 40)
                                         Text("In production")
-                                            .font(.anton(.body))
-                                            .foregroundColor(selectedStatus == "In production" ? .white : .brown)
+                                            .font(.anton(.headline))
+                                            .foregroundColor(.brown)
                                     }
                                     .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 12)
-                                    .background(selectedStatus == "In production" ? Color.brown : Color.white)
+                                    .padding(.vertical, 20)
+                                    .background(Color.white)
                                     .cornerRadius(20)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.brown, lineWidth: selectedStatus == "In production" ? 0 : 2)
+                                            .stroke(selectedStatus == "In production" ? Color.brown : Color.clear, lineWidth: 3)
                                     )
+                                    .shadow(color: selectedStatus == "In production" ? Color.brown.opacity(0.3) : Color.clear, radius: 5, x: 0, y: 2)
                                 }
 
                                 Button(action: { selectedStatus = "Ready" }) {
-                                    VStack(spacing: 8) {
+                                    VStack(spacing: 12) {
                                         Image("readyImage")
                                             .resizable()
-                                            .frame(width: 30, height: 30)
+                                            .frame(width: 40, height: 40)
                                         Text("Ready")
-                                            .font(.anton(.body))
-                                            .foregroundColor(selectedStatus == "Ready" ? .white : .brown)
+                                            .font(.anton(.headline))
+                                            .foregroundColor(.brown)
                                     }
                                     .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 12)
-                                    .background(selectedStatus == "Ready" ? Color.brown : Color.white)
+                                    .padding(.vertical, 20)
+                                    .background(Color.white)
                                     .cornerRadius(20)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 20)
-                                            .stroke(Color.brown, lineWidth: selectedStatus == "Ready" ? 0 : 2)
+                                            .stroke(selectedStatus == "Ready" ? Color.brown : Color.clear, lineWidth: 3)
                                     )
+                                    .shadow(color: selectedStatus == "Ready" ? Color.brown.opacity(0.3) : Color.clear, radius: 5, x: 0, y: 2)
                                 }
                             }
 

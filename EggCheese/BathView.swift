@@ -32,7 +32,7 @@ struct BathView: View {
                                 .foregroundColor(.brown)
                                 .multilineTextAlignment(.center)
                             
-                            NavigationLink(destination: AddBatchView()) {
+                            NavigationLink(destination: AddBatchView().environmentObject(batchManager)) {
                                 Text("Add batch")
                                     .font(.anton(.headline))
                                     .foregroundColor(.brown)
@@ -51,11 +51,12 @@ struct BathView: View {
                         
                         ScrollView {
                             LazyVStack(spacing: 15) {
-                                ForEach(Array(batchManager.batches.enumerated()), id: \.element.id) { index, batch in
-                                    BatchCardView(batch: batch, index: index)
+                                ForEach(batchManager.batches, id: \.id) { batch in
+                                    BatchCardView(batch: batch)
+                                        .environmentObject(batchManager)
                                 }
 
-                                NavigationLink(destination: AddBatchView()) {
+                                NavigationLink(destination: AddBatchView().environmentObject(batchManager)) {
                                     Text("Add batch")
                                         .font(.anton(.headline))
                                         .foregroundColor(.brown)
@@ -78,8 +79,9 @@ struct BathView: View {
             }
         }
         .onAppear {
-            
+            print("🔍 BathView: onAppear called")
             batchManager.loadBatches()
+            print("🔍 BathView: Loaded \(batchManager.batches.count) batches")
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchAdded"))) { _ in
             

@@ -32,7 +32,7 @@ struct RestraintView: View {
                                 .foregroundColor(.brown)
                                 .multilineTextAlignment(.center)
                             
-                            NavigationLink(destination: AddRestraintView()) {
+                            NavigationLink(destination: AddRestraintView().environmentObject(restraintManager)) {
                                 Text("Add data")
                                     .font(.anton(.headline))
                                     .foregroundColor(.brown)
@@ -51,11 +51,12 @@ struct RestraintView: View {
                         
                         ScrollView {
                             LazyVStack(spacing: 15) {
-                                ForEach(Array(restraintManager.restraintData.enumerated()), id: \.element.id) { index, data in
-                                    RestraintCardView(data: data, index: index)
+                                ForEach(restraintManager.restraintData, id: \.id) { data in
+                                    RestraintCardView(data: data)
+                                        .environmentObject(restraintManager)
                                 }
 
-                                NavigationLink(destination: AddRestraintView()) {
+                                NavigationLink(destination: AddRestraintView().environmentObject(restraintManager)) {
                                     Text("Add data")
                                         .font(.anton(.headline))
                                         .foregroundColor(.brown)

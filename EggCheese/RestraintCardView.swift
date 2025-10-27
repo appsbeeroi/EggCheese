@@ -2,10 +2,10 @@ import SwiftUI
 
 struct RestraintCardView: View {
     let data: RestraintData
-    let index: Int
+    @EnvironmentObject var restraintManager: RestraintManager
     
     var body: some View {
-        NavigationLink(destination: RestraintDetailView(data: data, index: index)) {
+        NavigationLink(destination: RestraintDetailView(data: data).environmentObject(restraintManager)) {
             HStack(spacing: 15) {
                 
                 VStack(spacing: 8) {
@@ -69,5 +69,6 @@ struct RestraintCardView: View {
         readinessDate: Calendar.current.date(byAdding: .day, value: 30, to: Date()) ?? Date(),
         notes: "Track ripening progress",
         status: "In production"
-    ), index: 0)
+    ))
+    .environmentObject(RestraintManager())
 }
