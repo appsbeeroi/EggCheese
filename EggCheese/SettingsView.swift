@@ -102,6 +102,25 @@ struct SettingsView: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(20)
+                        
+                        #if DEBUG
+                        HStack {
+                            Text("Reset First Launch")
+                                .font(.anton(.title3))
+                                .foregroundColor(.black)
+                            
+                            Spacer()
+                            
+                            Button(action: { resetFirstLaunchFlag() }) {
+                                Text("Reset")
+                                    .foregroundColor(.blue)
+                                    .font(.anton(.headline))
+                            }
+                        }
+                        .padding()
+                        .background(Color.white)
+                        .cornerRadius(20)
+                        #endif
                     }
                     .padding(.horizontal, 20)
                     
@@ -133,6 +152,12 @@ struct SettingsView: View {
         NotificationCenter.default.post(name: NSNotification.Name("RecipeDeleted"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name("RestraintDataDeleted"), object: nil)
     }
+    
+    #if DEBUG
+    private func resetFirstLaunchFlag() {
+        UserDefaults.standard.removeObject(forKey: "HasLaunchedBefore")
+    }
+    #endif
 }
 
 #Preview {

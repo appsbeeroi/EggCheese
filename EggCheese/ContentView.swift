@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var showLoading = true
+    @EnvironmentObject var notificationManager: NotificationManager
     
     var body: some View {
         if showLoading {
@@ -16,10 +17,28 @@ struct ContentView: View {
                 }
         } else {
             MainTabView()
+                .onAppear {
+                    checkFirstLaunch()
+                }
+        }
+    }
+    
+    private func checkFirstLaunch() {
+        let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "HasLaunchedBefore")
+        
+        if !hasLaunchedBefore {
+            // Первый запуск
+            UserDefaults.standard.set(true, forKey: "HasLaunchedBefore")
+            
+            // Запрашиваем разрешение на уведомления через небольшую задержку
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                notificationManager.requestPermission()
+            }
         }
     }
 }
 
 #Preview {
     ContentView()
+        .environmentObject(NotificationManager())
 }
