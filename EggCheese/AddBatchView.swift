@@ -193,38 +193,42 @@ struct AddBatchView: View {
                             HStack(spacing: 15) {
                                 
                                 Button(action: { selectedStatus = "In production" }) {
-                                    VStack(spacing: 12) {
+                                    VStack(spacing: 8) {
                                         Image("inProdImage")
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
 
                                         Text("In production")
-                                            .font(.anton(.headline))
-                                            .foregroundColor(.brown)
+                                            .font(.anton(.body))
+                                            .foregroundColor(selectedStatus == "In production" ? .white : .brown)
                                     }
                                     .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 20)
-                                    .background(Color.white)
-                                    .cornerRadius(25)
+                                    .padding(.vertical, 12)
+                                    .background(selectedStatus == "In production" ? Color.brown : Color.white)
+                                    .cornerRadius(20)
                                     .overlay(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .stroke(selectedStatus == "In production" ? Color.yellow : Color.clear, lineWidth: 2)
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(Color.brown, lineWidth: selectedStatus == "In production" ? 0 : 2)
                                     )
                                 }
 
                                 Button(action: { selectedStatus = "Ready" }) {
-                                    VStack(spacing: 12) {
+                                    VStack(spacing: 8) {
                                         Image("readyImage")
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
 
                                         Text("Ready")
-                                            .font(.anton(.headline))
-                                            .foregroundColor(.brown)
+                                            .font(.anton(.body))
+                                            .foregroundColor(selectedStatus == "Ready" ? .white : .brown)
                                     }
                                     .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 20)
-                                    .background(Color.white)
-                                    .cornerRadius(25)
+                                    .padding(.vertical, 12)
+                                    .background(selectedStatus == "Ready" ? Color.brown : Color.white)
+                                    .cornerRadius(20)
                                     .overlay(
-                                        RoundedRectangle(cornerRadius: 12)
-                                            .stroke(selectedStatus == "Ready" ? Color.yellow : Color.clear, lineWidth: 2)
+                                        RoundedRectangle(cornerRadius: 20)
+                                            .stroke(Color.brown, lineWidth: selectedStatus == "Ready" ? 0 : 2)
                                     )
                                 }
                             }
