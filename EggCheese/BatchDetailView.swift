@@ -5,9 +5,10 @@ struct BatchDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var batchManager: BatchManager
     @State private var showingDeleteAlert = false
+    @State private var showingEditSheet = false
     
     private var batchIndex: Int? {
-        batchManager.batches.firstIndex { $0.name == batch.name }
+        batchManager.batches.firstIndex { $0.id == batch.id }
     }
     
     var body: some View {
@@ -37,8 +38,8 @@ struct BatchDetailView: View {
                     Spacer()
 
                     HStack(spacing: 15) {
-                        if let index = batchIndex {
-                            NavigationLink(destination: AddBatchView(editingBatch: batch, editingIndex: index).environmentObject(batchManager)) {
+                        if batchIndex != nil {
+                            Button(action: { showingEditSheet = true }) {
                                 Text("Edit")
                                     .foregroundColor(.blue)
                                     .font(.anton(.headline))
@@ -96,7 +97,6 @@ struct BatchDetailView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
-            
             NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
         }
         .onDisappear {
@@ -106,9 +106,8 @@ struct BatchDetailView: View {
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
-                if let index = batchIndex {
-                    deleteBatchByIndex(index)
-                }
+                
+                deleteBatchFromUserDefaults(batch)
                 
                 NotificationCenter.default.post(name: NSNotification.Name("BatchDeleted"), object: nil)
                 dismiss()
@@ -116,18 +115,24 @@ struct BatchDetailView: View {
         } message: {
             Text("Are you sure you want to delete this batch?")
         }
+        .sheet(isPresented: $showingEditSheet) {
+            if let index = batchIndex {
+                AddBatchView(editingBatch: batch, editingIndex: index)
+                    .environmentObject(batchManager)
+            }
+        }
+        .presentationDetents([.large])
+        .presentationDragIndicator(.visible)
     }
     
-    private func deleteBatchByIndex(_ index: Int) {
+    private func deleteBatchFromUserDefaults(_ batch: Batch) {
         let userDefaults = UserDefaults.standard
         let batchesKey = "savedBatches"
         
         if let data = userDefaults.data(forKey: batchesKey),
            var batches = try? JSONDecoder().decode([Batch].self, from: data) {
             
-            if index < batches.count {
-                batches.remove(at: index)
-            }
+            batches.removeAll { $0.id == batch.id }
 
             if let encoded = try? JSONEncoder().encode(batches) {
                 userDefaults.set(encoded, forKey: batchesKey)

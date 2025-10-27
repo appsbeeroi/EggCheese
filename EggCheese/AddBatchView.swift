@@ -54,7 +54,7 @@ struct AddBatchView: View {
                     
                     Spacer()
 
-                    if showingBatchCard {
+                    if showingBatchCard && editingBatch == nil {
                         HStack(spacing: 15) {
                             Button(action: { showingBatchCard = false }) {
                                 Text("Edit")
@@ -379,12 +379,12 @@ struct AddBatchView: View {
         if let editingIndex = editingIndex {
             batchManager.updateBatch(at: editingIndex, with: newBatch)
             NotificationCenter.default.post(name: NSNotification.Name("BatchUpdated"), object: nil)
+            dismiss()
         } else {
             batchManager.addBatch(newBatch)
             NotificationCenter.default.post(name: NSNotification.Name("BatchAdded"), object: nil)
+            showingBatchCard = true
         }
-
-        showingBatchCard = true
     }
     
     private func deleteCreatedBatch() {

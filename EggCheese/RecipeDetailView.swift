@@ -8,7 +8,7 @@ struct RecipeDetailView: View {
     @State private var showingDeleteAlert = false
     
     private var recipeIndex: Int? {
-        recipeManager.recipes.firstIndex { $0.name == recipe.name && $0.ingredients == recipe.ingredients }
+        recipeManager.recipes.firstIndex { $0.id == recipe.id }
     }
     
     var body: some View {

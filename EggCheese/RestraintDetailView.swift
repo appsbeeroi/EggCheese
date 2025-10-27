@@ -7,7 +7,7 @@ struct RestraintDetailView: View {
     @State private var showingDeleteAlert = false
     
     private var restraintIndex: Int? {
-        restraintManager.restraintData.firstIndex { $0.name == data.name && $0.date == data.date && $0.restraintPeriod == data.restraintPeriod }
+        restraintManager.restraintData.firstIndex { $0.id == data.id }
     }
     
     var body: some View {
