@@ -83,6 +83,7 @@ struct AddRecipeView: View {
                                 HStack {
                                     TextField("Name", text: $name)
                                         .textFieldStyle(PlainTextFieldStyle())
+                                        .font(.anton(.body))
                                     
                                     if !name.isEmpty {
                                         Button(action: { name = "" }) {
@@ -91,13 +92,16 @@ struct AddRecipeView: View {
                                         }
                                     }
                                 }
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
 
                                 HStack {
                                     TextField("Ingredients", text: $ingredientsText, axis: .vertical)
                                         .textFieldStyle(PlainTextFieldStyle())
+                                        .font(.anton(.body))
+                                        .lineLimit(3...6)
                                     
                                     if !ingredientsText.isEmpty {
                                         Button(action: { ingredientsText = "" }) {
@@ -107,13 +111,16 @@ struct AddRecipeView: View {
                                     }
                                 }
                                 .frame(minHeight: 80)
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
 
                                 HStack {
                                     TextField("Preparation Steps", text: $preparationStepsText, axis: .vertical)
                                         .textFieldStyle(PlainTextFieldStyle())
+                                        .font(.anton(.body))
+                                        .lineLimit(3...6)
                                     
                                     if !preparationStepsText.isEmpty {
                                         Button(action: { preparationStepsText = "" }) {
@@ -123,13 +130,16 @@ struct AddRecipeView: View {
                                     }
                                 }
                                 .frame(minHeight: 80)
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
 
                                 HStack {
                                     TextField("Notes", text: $notes, axis: .vertical)
                                         .textFieldStyle(PlainTextFieldStyle())
+                                        .font(.anton(.body))
+                                        .lineLimit(2...4)
                                     
                                     if !notes.isEmpty {
                                         Button(action: { notes = "" }) {
@@ -138,10 +148,11 @@ struct AddRecipeView: View {
                                         }
                                     }
                                 }
-                                .frame(minHeight: 80)
-                                .padding()
+                                .frame(minHeight: 60)
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
                             }
                             
                             Spacer(minLength: 100) 

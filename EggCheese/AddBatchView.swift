@@ -86,6 +86,7 @@ struct AddBatchView: View {
                                 
                                 HStack {
                                     TextField("Name", text: $name)
+                                        .font(.anton(.body))
                                         .textFieldStyle(PlainTextFieldStyle())
                                     
                                     if !name.isEmpty {
@@ -95,9 +96,10 @@ struct AddBatchView: View {
                                         }
                                     }
                                 }
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
 
                                 Button(action: { showingCalendar = true }) {
                                     HStack {
@@ -108,13 +110,15 @@ struct AddBatchView: View {
                                             .resizable()
                                             .frame(width: 20, height: 20)
                                     }
-                                    .padding()
+                                    .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                     .background(Color.white)
-                                    .cornerRadius(12)
+                                    .cornerRadius(25)
                                 }
 
                                 HStack {
                                     TextField("Cheese Type", text: $cheeseType)
+                                        .font(.anton(.body))
                                         .textFieldStyle(PlainTextFieldStyle())
                                     
                                     if !cheeseType.isEmpty {
@@ -124,12 +128,14 @@ struct AddBatchView: View {
                                         }
                                     }
                                 }
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
 
                                 HStack {
                                     TextField("Milk Type", text: $milkType)
+                                        .font(.anton(.body))
                                         .textFieldStyle(PlainTextFieldStyle())
                                     
                                     if !milkType.isEmpty {
@@ -139,12 +145,14 @@ struct AddBatchView: View {
                                         }
                                     }
                                 }
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
 
                                 HStack {
                                     TextField("Volume", text: $volume)
+                                        .font(.anton(.body))
                                         .textFieldStyle(PlainTextFieldStyle())
                                         .keyboardType(.decimalPad)
                                     
@@ -155,9 +163,10 @@ struct AddBatchView: View {
                                         }
                                     }
                                 }
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
                             }
 
                             HStack(spacing: 15) {
@@ -173,7 +182,7 @@ struct AddBatchView: View {
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 20)
                                     .background(Color.white)
-                                    .cornerRadius(12)
+                                    .cornerRadius(25)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 12)
                                             .stroke(selectedStatus == "In production" ? Color.yellow : Color.clear, lineWidth: 2)
@@ -191,7 +200,7 @@ struct AddBatchView: View {
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 20)
                                     .background(Color.white)
-                                    .cornerRadius(12)
+                                    .cornerRadius(25)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 12)
                                             .stroke(selectedStatus == "Ready" ? Color.yellow : Color.clear, lineWidth: 2)
@@ -200,11 +209,13 @@ struct AddBatchView: View {
                             }
 
                             TextField("Notes", text: $notes, axis: .vertical)
+                                        .font(.anton(.body))
                                 .textFieldStyle(PlainTextFieldStyle())
                                 .frame(minHeight: 80)
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
                         
                             Spacer(minLength: 100) 
                             }
@@ -244,7 +255,8 @@ struct AddBatchView: View {
                                 }
                             }
                         }
-                        .padding()
+                        .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                         .background(Color.white)
                         .cornerRadius(20)
                         .padding(.horizontal, 20)
@@ -381,7 +393,8 @@ struct AddBatchView: View {
 struct CustomTextFieldStyle: TextFieldStyle {
     func _body(configuration: TextField<Self._Label>) -> some View {
         configuration
-            .padding()
+            .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
             .background(Color.white)
             .cornerRadius(10)
     }

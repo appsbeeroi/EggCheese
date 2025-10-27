@@ -85,6 +85,7 @@ struct AddRestraintView: View {
                                 
                                 HStack {
                                     TextField("Batch Name", text: $name)
+                                        .font(.anton(.body))
                                         .textFieldStyle(PlainTextFieldStyle())
                                     
                                     if !name.isEmpty {
@@ -94,9 +95,10 @@ struct AddRestraintView: View {
                                         }
                                     }
                                 }
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
 
                                 Button(action: { showingCalendar = true }) {
                                     HStack {
@@ -107,13 +109,15 @@ struct AddRestraintView: View {
                                             .resizable()
                                             .frame(width: 20, height: 20)
                                     }
-                                    .padding()
+                                    .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                     .background(Color.white)
-                                    .cornerRadius(12)
+                                    .cornerRadius(25)
                                 }
 
                                 HStack {
                                     TextField("Aging Period", text: $restraintPeriod)
+                                        .font(.anton(.body))
                                         .textFieldStyle(PlainTextFieldStyle())
                                         .keyboardType(.numberPad)
                                     
@@ -124,9 +128,10 @@ struct AddRestraintView: View {
                                         }
                                     }
                                 }
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
 
                                 Button(action: { showingCalendar = true }) {
                                     HStack {
@@ -137,9 +142,10 @@ struct AddRestraintView: View {
                                             .resizable()
                                             .frame(width: 20, height: 20)
                                     }
-                                    .padding()
+                                    .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                     .background(Color.white)
-                                    .cornerRadius(12)
+                                    .cornerRadius(25)
                                 }
                             }
 
@@ -155,7 +161,7 @@ struct AddRestraintView: View {
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 20)
                                     .background(Color.white)
-                                    .cornerRadius(12)
+                                    .cornerRadius(25)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 12)
                                             .stroke(selectedStatus == "In production" ? Color.yellow : Color.clear, lineWidth: 2)
@@ -172,7 +178,7 @@ struct AddRestraintView: View {
                                     .frame(maxWidth: .infinity)
                                     .padding(.vertical, 20)
                                     .background(Color.white)
-                                    .cornerRadius(12)
+                                    .cornerRadius(25)
                                     .overlay(
                                         RoundedRectangle(cornerRadius: 12)
                                             .stroke(selectedStatus == "Ready" ? Color.yellow : Color.clear, lineWidth: 2)
@@ -181,11 +187,13 @@ struct AddRestraintView: View {
                             }
 
                             TextField("Notes", text: $notes, axis: .vertical)
+                                        .font(.anton(.body))
                                 .textFieldStyle(PlainTextFieldStyle())
                                 .frame(minHeight: 80)
-                                .padding()
+                                .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                                 .background(Color.white)
-                                .cornerRadius(12)
+                                .cornerRadius(25)
                             
                             Spacer(minLength: 100) 
                             }
@@ -224,7 +232,8 @@ struct AddRestraintView: View {
                                 }
                             }
                         }
-                        .padding()
+                        .padding(.horizontal, 20)
+                                .padding(.vertical, 16)
                         .background(Color.white)
                         .cornerRadius(20)
                         .padding(.horizontal, 20)
