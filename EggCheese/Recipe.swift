@@ -1,10 +1,3 @@
-//
-//  Recipe.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import Foundation
 
 struct Recipe: Codable, Identifiable {
@@ -22,7 +15,6 @@ struct Recipe: Codable, Identifiable {
     }
 }
 
-// Менеджер для работы с UserDefaults
 class RecipeManager: ObservableObject {
     @Published var recipes: [Recipe] = []
     
@@ -47,7 +39,7 @@ class RecipeManager: ObservableObject {
         if let data = userDefaults.data(forKey: recipesKey),
            let decoded = try? JSONDecoder().decode([Recipe].self, from: data) {
             recipes = decoded
-            // Принудительно обновляем UI
+            
             objectWillChange.send()
         }
     }

@@ -1,10 +1,3 @@
-//
-//  RecipeCardView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct RecipeCardView: View {
@@ -13,25 +6,22 @@ struct RecipeCardView: View {
     var body: some View {
         NavigationLink(destination: RecipeDetailView(recipe: recipe)) {
             HStack(spacing: 0) {
-                // Левая часть - желтый акцент с иконкой сыра
+                
                 ZStack {
 
-                    
                     Image("cheeseImage")
                         .resizable()
                         .frame(width: 40, height: 40)
                         .padding(.leading, 15)
                 }
-                
-                // Центральная часть - название рецепта
+
                 Text(recipe.name)
                     .font(.anton(.title2))
                     .foregroundColor(.brown)
                     .padding(.leading, 15)
                 
                 Spacer()
-                
-                // Правая часть - стрелка
+
                 Image(systemName: "chevron.right")
                     .foregroundColor(.yellow)
                     .font(.anton(.title3))
@@ -42,7 +32,7 @@ struct RecipeCardView: View {
             .cornerRadius(15)
             .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
         }
-        .buttonStyle(PlainButtonStyle()) // Убираем стиль кнопки NavigationLink
+        .buttonStyle(PlainButtonStyle()) 
     }
 }
 

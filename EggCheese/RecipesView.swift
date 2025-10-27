@@ -1,10 +1,3 @@
-//
-//  RecipesView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct RecipesView: View {
@@ -13,7 +6,7 @@ struct RecipesView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Фоновое изображение background из assets
+                
                 Image("background")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -26,7 +19,7 @@ struct RecipesView: View {
                         .padding(.top, 80)
                     
                     if recipeManager.recipes.isEmpty {
-                        // Пустое состояние
+                        
                         VStack(spacing: 20) {
                             Image("cheeseImage")
                             
@@ -55,14 +48,13 @@ struct RecipesView: View {
                         .cornerRadius(20)
                         .padding(.horizontal, 20)
                     } else {
-                        // Список рецептов
+                        
                         ScrollView {
                             LazyVStack(spacing: 15) {
                                 ForEach(recipeManager.recipes) { recipe in
                                     RecipeCardView(recipe: recipe)
                                 }
-                                
-                                // Кнопка добавления
+
                                 NavigationLink(destination: AddRecipeView()) {
                                     Text("Add recipe")
                                         .font(.anton(.headline))
@@ -84,15 +76,15 @@ struct RecipesView: View {
             }
         }
         .onAppear {
-            // Обновляем список при появлении экрана
+            
             recipeManager.loadRecipes()
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RecipeAdded"))) { _ in
-            // Обновляем список при добавлении нового рецепта
+            
             recipeManager.loadRecipes()
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RecipeDeleted"))) { _ in
-            // Обновляем список при удалении рецепта
+            
             recipeManager.loadRecipes()
         }
     }

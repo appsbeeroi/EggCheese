@@ -1,10 +1,3 @@
-//
-//  AddRestraintView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct AddRestraintView: View {
@@ -19,24 +12,23 @@ struct AddRestraintView: View {
     @State private var showingCalendar = false
     @State private var showingDataCard = false
     @State private var showingDeleteAlert = false
-    
-    // Проверяем, заполнены ли все обязательные поля
+
     private var isFormValid: Bool {
         !name.isEmpty && !restraintPeriod.isEmpty
     }
     
     var body: some View {
         ZStack {
-            // Фоновое изображение background из assets
+            
             Image("background")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Кастомная навигационная панель
+                
                 HStack {
-                    // Кнопка назад (кастомная иконка)
+                    
                     Button(action: { dismiss() }) {
                         Image("backButton")
                             .resizable()
@@ -44,15 +36,13 @@ struct AddRestraintView: View {
                     }
                     
                     Spacer()
-                    
-                    // Заголовок (пустой, если показывается карточка)
+
                     Text(showingDataCard ? "" : "Add data")
                         .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
-                    
-                    // Кнопки "Edit" и "Delete" или "Done"
+
                     if showingDataCard {
                         HStack(spacing: 15) {
                             Button(action: { showingDataCard = false }) {
@@ -78,14 +68,13 @@ struct AddRestraintView: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 90)
-                
-                // Основной контент
+
                 if !showingDataCard {
                     ScrollView {
                         VStack(spacing: 20) {
-                            // Поля ввода
+                            
                             VStack(spacing: 15) {
-                                // Batch Name
+                                
                                 HStack {
                                     TextField("Batch Name", text: $name)
                                         .textFieldStyle(PlainTextFieldStyle())
@@ -100,8 +89,7 @@ struct AddRestraintView: View {
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(12)
-                                
-                                // Start Date
+
                                 Button(action: { showingCalendar = true }) {
                                     HStack {
                                         Text(dateFormatter.string(from: date))
@@ -115,8 +103,7 @@ struct AddRestraintView: View {
                                     .background(Color.white)
                                     .cornerRadius(12)
                                 }
-                                
-                                // Aging Period
+
                                 HStack {
                                     TextField("Aging Period", text: $restraintPeriod)
                                         .textFieldStyle(PlainTextFieldStyle())
@@ -131,8 +118,7 @@ struct AddRestraintView: View {
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(12)
-                                
-                                // Ready Date
+
                                 Button(action: { showingCalendar = true }) {
                                     HStack {
                                         Text(dateFormatter.string(from: readinessDate))
@@ -147,10 +133,9 @@ struct AddRestraintView: View {
                                     .cornerRadius(12)
                                 }
                             }
-                            
-                            // Status Section
+
                             HStack(spacing: 15) {
-                                // In production button
+                                
                                 Button(action: { selectedStatus = "In production" }) {
                                     VStack(spacing: 12) {
                                         Image("inProdImage")
@@ -167,8 +152,7 @@ struct AddRestraintView: View {
                                             .stroke(selectedStatus == "In production" ? Color.yellow : Color.clear, lineWidth: 2)
                                     )
                                 }
-                                
-                                // Ready button
+
                                 Button(action: { selectedStatus = "Ready" }) {
                                     VStack(spacing: 12) {
                                         Image("readyImage")
@@ -186,8 +170,7 @@ struct AddRestraintView: View {
                                     )
                                 }
                             }
-                            
-                            // Notes Section
+
                             TextField("Notes", text: $notes, axis: .vertical)
                                 .textFieldStyle(PlainTextFieldStyle())
                                 .frame(minHeight: 80)
@@ -195,22 +178,22 @@ struct AddRestraintView: View {
                                 .background(Color.white)
                                 .cornerRadius(12)
                             
-                            Spacer(minLength: 100) // Отступ для таббара
+                            Spacer(minLength: 100) 
                             }
                             .padding(.horizontal, 20)
                             .padding(.top, 20)
                             .onTapGesture {
-                                // Скрываем клавиатуру при нажатии на область с полями
+                                
                                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                             }
                     }
                 } else {
-                    // Карточка restraint data
+                    
                     VStack {
                         Spacer()
                         
                         VStack(spacing: 20) {
-                            // Статус
+                            
                             VStack(spacing: 10) {
                                 Image("bathImage")
                                 
@@ -218,13 +201,11 @@ struct AddRestraintView: View {
                                     .font(.anton(.headline))
                                     .foregroundColor(.brown)
                             }
-                            
-                            // Название
+
                             Text(name)
                                 .font(.anton(.title))
                                 .foregroundColor(.brown)
-                            
-                            // Детали
+
                             VStack(alignment: .leading, spacing: 10) {
                                 DetailRow(title: "Date", value: dateFormatter.string(from: date))
                                 DetailRow(title: "Restraint Period", value: restraintPeriod)
@@ -242,14 +223,13 @@ struct AddRestraintView: View {
                         Spacer()
                     }
                 }
-                
-                // Календарь-оверлей
+
                 if showingCalendar {
                     VStack {
                         Spacer()
                         
                         VStack(spacing: 0) {
-                            // Заголовок календаря
+                            
                             HStack {
                                 Button(action: { showingCalendar = false }) {
                                     Image(systemName: "xmark")
@@ -275,8 +255,7 @@ struct AddRestraintView: View {
                             .padding(.horizontal, 20)
                             .padding(.vertical, 15)
                             .background(Color.white)
-                            
-                            // Календарь
+
                             DatePicker("", selection: $date, displayedComponents: .date)
                                 .datePickerStyle(GraphicalDatePickerStyle())
                                 .padding(.horizontal, 20)
@@ -293,17 +272,17 @@ struct AddRestraintView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
-            // Скрываем таббар при появлении экрана
+            
             NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
         }
         .onDisappear {
-            // Показываем таббар при исчезновении экрана
+            
             NotificationCenter.default.post(name: NSNotification.Name("ShowTabBar"), object: nil)
         }
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
-                // Удаляем только что созданные данные
+                
                 deleteCreatedRestraintData()
                 dismiss()
             }
@@ -313,7 +292,7 @@ struct AddRestraintView: View {
     }
     
     private func saveRestraintData() {
-        // Создаем новые restraint данные
+        
         let newData = RestraintData(
             name: name,
             date: date,
@@ -322,36 +301,31 @@ struct AddRestraintView: View {
             notes: notes,
             status: selectedStatus
         )
-        
-        // Сохраняем в UserDefaults
+
         restraintManager.addRestraintData(newData)
-        
-        // Отправляем уведомление об добавлении данных
+
         NotificationCenter.default.post(name: NSNotification.Name("RestraintDataAdded"), object: nil)
-        
-        // Показываем карточку данных
+
         showingDataCard = true
     }
     
     private func deleteCreatedRestraintData() {
-        // Удаляем последние добавленные данные (только что созданные)
+        
         let userDefaults = UserDefaults.standard
         let restraintKey = "savedRestraintData"
         
         if let data = userDefaults.data(forKey: restraintKey),
            var restraintData = try? JSONDecoder().decode([RestraintData].self, from: data) {
-            // Удаляем последний элемент (только что созданный)
+            
             if !restraintData.isEmpty {
                 restraintData.removeLast()
             }
-            
-            // Сохраняем обновленный массив
+
             if let encoded = try? JSONEncoder().encode(restraintData) {
                 userDefaults.set(encoded, forKey: restraintKey)
             }
         }
-        
-        // Отправляем уведомление об удалении
+
         NotificationCenter.default.post(name: NSNotification.Name("RestraintDataDeleted"), object: nil)
     }
     

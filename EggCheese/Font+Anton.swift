@@ -1,10 +1,3 @@
-//
-//  Font+Anton.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 extension Font {

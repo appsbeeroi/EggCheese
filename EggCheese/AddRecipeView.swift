@@ -1,10 +1,3 @@
-//
-//  AddRecipeView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct AddRecipeView: View {
@@ -16,24 +9,23 @@ struct AddRecipeView: View {
     @State private var notes = ""
     @State private var showingRecipeCard = false
     @State private var showingDeleteAlert = false
-    
-    // Проверяем, заполнены ли все обязательные поля
+
     private var isFormValid: Bool {
         !name.isEmpty && !ingredientsText.isEmpty && !preparationStepsText.isEmpty
     }
     
     var body: some View {
         ZStack {
-            // Фоновое изображение background из assets
+            
             Image("background")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Кастомная навигационная панель
+                
                 HStack {
-                    // Кнопка назад (кастомная иконка)
+                    
                     Button(action: { dismiss() }) {
                         Image("backButton")
                             .resizable()
@@ -41,15 +33,13 @@ struct AddRecipeView: View {
                     }
                     
                     Spacer()
-                    
-                    // Заголовок (пустой, если показывается карточка)
+
                     Text(showingRecipeCard ? "" : "Add recipe")
                         .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
-                    
-                    // Кнопки "Edit" и "Delete" или "Done"
+
                     if showingRecipeCard {
                         HStack(spacing: 15) {
                             Button(action: { showingRecipeCard = false }) {
@@ -75,14 +65,13 @@ struct AddRecipeView: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 90)
-                
-                // Основной контент
+
                 if !showingRecipeCard {
                     ScrollView {
                         VStack(spacing: 20) {
-                            // Поля ввода
+                            
                             VStack(spacing: 15) {
-                                // Name
+                                
                                 HStack {
                                     TextField("Name", text: $name)
                                         .textFieldStyle(PlainTextFieldStyle())
@@ -97,8 +86,7 @@ struct AddRecipeView: View {
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(12)
-                                
-                                // Ingredients
+
                                 HStack {
                                     TextField("Ingredients", text: $ingredientsText, axis: .vertical)
                                         .textFieldStyle(PlainTextFieldStyle())
@@ -114,8 +102,7 @@ struct AddRecipeView: View {
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(12)
-                                
-                                // Preparation Steps
+
                                 HStack {
                                     TextField("Preparation Steps", text: $preparationStepsText, axis: .vertical)
                                         .textFieldStyle(PlainTextFieldStyle())
@@ -131,8 +118,7 @@ struct AddRecipeView: View {
                                 .padding()
                                 .background(Color.white)
                                 .cornerRadius(12)
-                                
-                                // Notes
+
                                 HStack {
                                     TextField("Notes", text: $notes, axis: .vertical)
                                         .textFieldStyle(PlainTextFieldStyle())
@@ -150,23 +136,20 @@ struct AddRecipeView: View {
                                 .cornerRadius(12)
                             }
                             
-                            Spacer(minLength: 100) // Отступ для таббара
+                            Spacer(minLength: 100) 
                         }
                         .padding(.horizontal, 20)
                         .padding(.top, 20)
                     }
                 } else {
-                    // Карточка рецепта
+                    
                     VStack {
                         Spacer()
                         
                         VStack(spacing: 20) {
-                            // Иконка рецепта
+                            
                             Image("cheeseImage")
-                            
-                            // Название рецепта
-                            
-                            // Детали
+
                             VStack(alignment: .leading, spacing: 15) {
                                 Text(name)
                                     .font(.anton(.title))
@@ -225,21 +208,21 @@ struct AddRecipeView: View {
         }
         .navigationBarHidden(true)
         .onTapGesture {
-            // Скрываем клавиатуру при нажатии на экран
+            
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         .onAppear {
-            // Скрываем таббар при появлении экрана
+            
             NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
         }
         .onDisappear {
-            // Показываем таббар при исчезновении экрана
+            
             NotificationCenter.default.post(name: NSNotification.Name("ShowTabBar"), object: nil)
         }
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
-                // Удаляем только что созданный рецепт
+                
                 deleteCreatedRecipe()
                 dismiss()
             }
@@ -249,43 +232,38 @@ struct AddRecipeView: View {
     }
     
     private func saveRecipe() {
-        // Создаем новый рецепт
+        
         let newRecipe = Recipe(
             name: name,
             ingredients: ingredientsText.components(separatedBy: "\n").filter { !$0.isEmpty },
             preparationSteps: preparationStepsText.components(separatedBy: "\n").filter { !$0.isEmpty },
             notes: notes
         )
-        
-        // Сохраняем в UserDefaults
+
         recipeManager.addRecipe(newRecipe)
-        
-        // Отправляем уведомление об добавлении рецепта
+
         NotificationCenter.default.post(name: NSNotification.Name("RecipeAdded"), object: nil)
-        
-        // Показываем карточку рецепта
+
         showingRecipeCard = true
     }
     
     private func deleteCreatedRecipe() {
-        // Удаляем последний добавленный рецепт (только что созданный)
+        
         let userDefaults = UserDefaults.standard
         let recipesKey = "savedRecipes"
         
         if let data = userDefaults.data(forKey: recipesKey),
            var recipes = try? JSONDecoder().decode([Recipe].self, from: data) {
-            // Удаляем последний элемент (только что созданный)
+            
             if !recipes.isEmpty {
                 recipes.removeLast()
             }
-            
-            // Сохраняем обновленный массив
+
             if let encoded = try? JSONEncoder().encode(recipes) {
                 userDefaults.set(encoded, forKey: recipesKey)
             }
         }
-        
-        // Отправляем уведомление об удалении
+
         NotificationCenter.default.post(name: NSNotification.Name("RecipeDeleted"), object: nil)
     }
 }

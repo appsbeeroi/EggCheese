@@ -1,10 +1,3 @@
-//
-//  Batch.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import Foundation
 
 struct Batch: Codable, Identifiable {
@@ -28,7 +21,6 @@ struct Batch: Codable, Identifiable {
     }
 }
 
-// Менеджер для работы с UserDefaults
 class BatchManager: ObservableObject {
     @Published var batches: [Batch] = []
     
@@ -53,7 +45,7 @@ class BatchManager: ObservableObject {
         if let data = userDefaults.data(forKey: batchesKey),
            let decoded = try? JSONDecoder().decode([Batch].self, from: data) {
             batches = decoded
-            // Принудительно обновляем UI
+            
             objectWillChange.send()
         }
     }

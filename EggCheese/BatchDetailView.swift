@@ -1,10 +1,3 @@
-//
-//  BatchDetailView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct BatchDetailView: View {
@@ -15,16 +8,16 @@ struct BatchDetailView: View {
     
     var body: some View {
         ZStack {
-            // Фоновое изображение background из assets
+            
             Image("background")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Кастомная навигационная панель
+                
                 HStack {
-                    // Кнопка назад (кастомная иконка)
+                    
                     Button(action: { dismiss() }) {
                         Image("backButton")
                             .resizable()
@@ -32,15 +25,13 @@ struct BatchDetailView: View {
                     }
                     
                     Spacer()
-                    
-                    // Заголовок
+
                     Text("Edit batch")
                         .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
-                    
-                    // Кнопка удаления
+
                     Button(action: { showingDeleteAlert = true }) {
                         Text("Delete")
                             .foregroundColor(.red)
@@ -49,13 +40,12 @@ struct BatchDetailView: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 90)
-                
-                // Основной контент - карточка batch
+
                 VStack {
                     Spacer()
                     
                     VStack(spacing: 20) {
-                        // Статус
+                        
                         VStack(spacing: 10) {
                             Image(batch.status == "In production" ? "inProdImage" : "readyImage")
                                 .resizable()
@@ -65,13 +55,11 @@ struct BatchDetailView: View {
                                 .font(.anton(.headline))
                                 .foregroundColor(.brown)
                         }
-                        
-                        // Название batch
+
                         Text(batch.name)
                             .font(.anton(.title))
                             .foregroundColor(.brown)
-                        
-                        // Детали
+
                         VStack(alignment: .leading, spacing: 10) {
                             DetailRow(title: "Date", value: dateFormatter.string(from: batch.date))
                             DetailRow(title: "Cheese Type", value: batch.cheeseType)
@@ -93,19 +81,19 @@ struct BatchDetailView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
-            // Скрываем таббар при появлении экрана
+            
             NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
         }
         .onDisappear {
-            // Показываем таббар при исчезновении экрана
+            
             NotificationCenter.default.post(name: NSNotification.Name("ShowTabBar"), object: nil)
         }
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
-                // Удаляем по индексу из UserDefaults
+                
                 deleteBatchByIndex(index)
-                // Отправляем уведомление об удалении batch
+                
                 NotificationCenter.default.post(name: NSNotification.Name("BatchDeleted"), object: nil)
                 dismiss()
             }
@@ -120,12 +108,11 @@ struct BatchDetailView: View {
         
         if let data = userDefaults.data(forKey: batchesKey),
            var batches = try? JSONDecoder().decode([Batch].self, from: data) {
-            // Удаляем batch по индексу
+            
             if index < batches.count {
                 batches.remove(at: index)
             }
-            
-            // Сохраняем обновленный массив
+
             if let encoded = try? JSONEncoder().encode(batches) {
                 userDefaults.set(encoded, forKey: batchesKey)
             }

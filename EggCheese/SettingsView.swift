@@ -1,10 +1,3 @@
-//
-//  SettingsView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct SettingsView: View {
@@ -17,7 +10,7 @@ struct SettingsView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Фоновое изображение background из assets
+                
                 Image("background")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -28,12 +21,9 @@ struct SettingsView: View {
                         .font(.anton(.largeTitle))
                         .foregroundColor(.white)
                         .padding(.top, 80)
-                    
-//                    Spacer()
-                    
-                    // Основной контент - карточки настроек
+
                     VStack(spacing: 15) {
-                            // About the app
+                            
                             NavigationLink(destination: AboutView()) {
                                 HStack {
                                     Text("About the app")
@@ -51,8 +41,7 @@ struct SettingsView: View {
                                 .cornerRadius(20)
                             }
                             .buttonStyle(PlainButtonStyle())
-                        
-                        // Notification
+
                         VStack(spacing: 10) {
                             HStack {
                             Text("Notification")
@@ -95,8 +84,7 @@ struct SettingsView: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(20)
-                        
-                        // History
+
                         HStack {
                             Text("History")
                                 .font(.anton(.title3))
@@ -131,17 +119,15 @@ struct SettingsView: View {
     }
     
     private func clearAllData() {
-        // Очищаем все данные из UserDefaults с правильными ключами
+        
         UserDefaults.standard.removeObject(forKey: "savedBatches")
         UserDefaults.standard.removeObject(forKey: "savedRecipes")
         UserDefaults.standard.removeObject(forKey: "savedRestraintData")
-        
-        // Очищаем массивы в менеджерах
+
         batchManager.batches.removeAll()
         recipeManager.recipes.removeAll()
         restraintManager.restraintData.removeAll()
-        
-        // Отправляем уведомления об обновлении всех экранов
+
         NotificationCenter.default.post(name: NSNotification.Name("BatchDeleted"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name("RecipeDeleted"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name("RestraintDataDeleted"), object: nil)

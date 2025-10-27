@@ -1,10 +1,3 @@
-//
-//  ContentView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct ContentView: View {
@@ -14,7 +7,7 @@ struct ContentView: View {
         if showLoading {
             LoadingView()
                 .onAppear {
-                    // Показываем LoadingView 2 секунды
+                    
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
                         withAnimation {
                             showLoading = false

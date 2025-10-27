@@ -1,10 +1,3 @@
-//
-//  RestraintData.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import Foundation
 
 struct RestraintData: Codable, Identifiable {
@@ -26,7 +19,6 @@ struct RestraintData: Codable, Identifiable {
     }
 }
 
-// Менеджер для работы с UserDefaults
 class RestraintManager: ObservableObject {
     @Published var restraintData: [RestraintData] = []
     
@@ -51,7 +43,7 @@ class RestraintManager: ObservableObject {
         if let data = userDefaults.data(forKey: restraintKey),
            let decoded = try? JSONDecoder().decode([RestraintData].self, from: data) {
             restraintData = decoded
-            // Принудительно обновляем UI
+            
             objectWillChange.send()
         }
     }

@@ -1,10 +1,3 @@
-//
-//  RestraintCardView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct RestraintCardView: View {
@@ -13,7 +6,7 @@ struct RestraintCardView: View {
     var body: some View {
         NavigationLink(destination: RestraintDetailView(data: data)) {
             HStack(spacing: 15) {
-                // Левая часть - желтый круг с иконкой
+                
                 VStack(spacing: 8) {
                     ZStack {
                         Circle()
@@ -29,8 +22,7 @@ struct RestraintCardView: View {
                         .font(.anton(.caption))
                         .foregroundColor(.brown)
                 }
-                
-                // Центральная часть - название и даты
+
                 VStack(alignment: .leading, spacing: 4) {
                     Text(data.name)
                         .font(.anton(.title2))
@@ -48,8 +40,7 @@ struct RestraintCardView: View {
                 }
                 
                 Spacer()
-                
-                // Правая часть - стрелка
+
                 Image(systemName: "chevron.right")
                     .foregroundColor(.yellow)
                     .font(.anton(.title3))
@@ -59,7 +50,7 @@ struct RestraintCardView: View {
             .cornerRadius(15)
             .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
         }
-        .buttonStyle(PlainButtonStyle()) // Убираем стиль кнопки NavigationLink
+        .buttonStyle(PlainButtonStyle()) 
     }
     
     private var dateFormatter: DateFormatter {

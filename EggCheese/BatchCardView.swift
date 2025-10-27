@@ -1,10 +1,3 @@
-//
-//  BatchCardView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct BatchCardView: View {
@@ -14,7 +7,7 @@ struct BatchCardView: View {
     var body: some View {
         NavigationLink(destination: BatchDetailView(batch: batch, index: index)) {
             HStack(spacing: 15) {
-                // Левая часть - желтый круг с иконкой и статусом
+                
                 VStack(spacing: 8) {
                     ZStack {
                         Circle()
@@ -30,15 +23,13 @@ struct BatchCardView: View {
                         .font(.anton(.caption))
                         .foregroundColor(.brown)
                 }
-                
-                // Центральная часть - только название
+
                 Text(batch.name)
                     .font(.anton(.title2))
                     .foregroundColor(.brown)
                 
                 Spacer()
-                
-                // Правая часть - стрелка
+
                 Image(systemName: "chevron.right")
                     .foregroundColor(.yellow)
                     .font(.anton(.title3))
@@ -48,7 +39,7 @@ struct BatchCardView: View {
             .cornerRadius(15)
             .shadow(color: .black.opacity(0.05), radius: 5, x: 0, y: 2)
         }
-        .buttonStyle(PlainButtonStyle()) // Убираем стиль кнопки NavigationLink
+        .buttonStyle(PlainButtonStyle()) 
     }
 }
 

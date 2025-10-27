@@ -1,10 +1,3 @@
-//
-//  AboutView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct AboutView: View {
@@ -12,16 +5,16 @@ struct AboutView: View {
     
     var body: some View {
         ZStack {
-            // Фоновое изображение background из assets
+            
             Image("background")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Кастомная навигационная панель
+                
                 HStack {
-                    // Кнопка назад (кастомная иконка)
+                    
                     Button(action: { dismiss() }) {
                         Image("backButton")
                             .resizable()
@@ -29,25 +22,22 @@ struct AboutView: View {
                     }
                     
                     Spacer()
-                    
-                    // Заголовок
+
                     Text("About the app")
                         .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
-                    
-                    // Пустое место для баланса
+
                     Color.clear
                         .frame(width: 30, height: 30)
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 90)
-                
-                // Основной контент
+
                 ScrollView {
                     VStack(spacing: 30) {
-                        // Логотип приложения
+                        
                         VStack(spacing: 20) {
                             Image("cheeseImage")
                                 .resizable()
@@ -64,8 +54,7 @@ struct AboutView: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(20)
-                        
-                        // Описание приложения
+
                         VStack(alignment: .leading, spacing: 15) {
                             Text("About EggCheese")
                                 .font(.anton(.title2))
@@ -91,8 +80,7 @@ struct AboutView: View {
                         .padding()
                         .background(Color.white)
                         .cornerRadius(20)
-                        
-                        // Информация о версии
+
                         VStack(spacing: 10) {
                             Text("Version 1.0.0")
                                 .font(.anton(.headline))
@@ -106,7 +94,7 @@ struct AboutView: View {
                         .background(Color.white)
                         .cornerRadius(20)
                         
-                        Spacer(minLength: 100) // Отступ для таббара
+                        Spacer(minLength: 100) 
                     }
                     .padding(.horizontal, 20)
                     .padding(.top, 20)
@@ -115,11 +103,11 @@ struct AboutView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
-            // Скрываем таббар при появлении экрана
+            
             NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
         }
         .onDisappear {
-            // Показываем таббар при исчезновении экрана
+            
             NotificationCenter.default.post(name: NSNotification.Name("ShowTabBar"), object: nil)
         }
     }

@@ -1,10 +1,3 @@
-//
-//  BathView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct BathView: View {
@@ -13,7 +6,7 @@ struct BathView: View {
     var body: some View {
         NavigationStack {
             ZStack {
-                // Фоновое изображение background из assets
+                
                 Image("background")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
@@ -26,7 +19,7 @@ struct BathView: View {
                         .padding(.top, 80)
                     
                     if batchManager.batches.isEmpty {
-                        // Пустое состояние
+                        
                         VStack(spacing: 20) {
                             Image("bathImage")
                             
@@ -55,14 +48,13 @@ struct BathView: View {
                         .cornerRadius(20)
                         .padding(.horizontal, 20)
                     } else {
-                        // Список batches
+                        
                         ScrollView {
                             LazyVStack(spacing: 15) {
                                 ForEach(Array(batchManager.batches.enumerated()), id: \.element.id) { index, batch in
                                     BatchCardView(batch: batch, index: index)
                                 }
-                                
-                                // Кнопка добавления
+
                                 NavigationLink(destination: AddBatchView()) {
                                     Text("Add batch")
                                         .font(.anton(.headline))
@@ -86,15 +78,15 @@ struct BathView: View {
             }
         }
         .onAppear {
-            // Обновляем список при появлении экрана
+            
             batchManager.loadBatches()
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchAdded"))) { _ in
-            // Обновляем список при добавлении нового batch
+            
             batchManager.loadBatches()
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchDeleted"))) { _ in
-            // Обновляем список при удалении batch
+            
             batchManager.loadBatches()
         }
     }

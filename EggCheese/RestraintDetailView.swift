@@ -1,10 +1,3 @@
-//
-//  RestraintDetailView.swift
-//  EggCheese
-//
-//  Created by Fora on 24.10.2025.
-//
-
 import SwiftUI
 
 struct RestraintDetailView: View {
@@ -14,16 +7,16 @@ struct RestraintDetailView: View {
     
     var body: some View {
         ZStack {
-            // Фоновое изображение background из assets
+            
             Image("background")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
             
             VStack(spacing: 0) {
-                // Кастомная навигационная панель
+                
                 HStack {
-                    // Кнопка назад (кастомная иконка)
+                    
                     Button(action: { dismiss() }) {
                         Image("backButton")
                             .resizable()
@@ -31,15 +24,13 @@ struct RestraintDetailView: View {
                     }
                     
                     Spacer()
-                    
-                    // Заголовок
+
                     Text("Edit restraint data")
                         .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
-                    
-                    // Кнопка удаления
+
                     Button(action: { showingDeleteAlert = true }) {
                         Text("Delete")
                             .foregroundColor(.red)
@@ -48,13 +39,12 @@ struct RestraintDetailView: View {
                 }
                 .padding(.horizontal, 20)
                 .padding(.top, 90)
-                
-                // Основной контент - карточка restraint data
+
                 VStack {
                     Spacer()
                     
                     VStack(spacing: 20) {
-                        // Статус с иконкой
+                        
                         VStack(spacing: 10) {
                             Image(data.status == "In production" ? "inProdImage" : "readyImage")
                                 .resizable()
@@ -64,14 +54,12 @@ struct RestraintDetailView: View {
                                 .font(.anton(.headline))
                                 .foregroundColor(.yellow)
                         }
-                        
-                        // Название
+
                         Text(data.name)
                             .font(.anton(.title))
                             .foregroundColor(.brown)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        
-                        // Детали в две колонки
+
                         HStack(alignment: .top, spacing: 20) {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Start Date")
@@ -93,8 +81,7 @@ struct RestraintDetailView: View {
                             
                             Spacer()
                         }
-                        
-                        // Aging Period внизу
+
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Aging Period")
                                 .font(.anton(.caption))
@@ -116,19 +103,19 @@ struct RestraintDetailView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
-            // Скрываем таббар при появлении экрана
+            
             NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
         }
         .onDisappear {
-            // Показываем таббар при исчезновении экрана
+            
             NotificationCenter.default.post(name: NSNotification.Name("ShowTabBar"), object: nil)
         }
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
-                // Удаляем напрямую из UserDefaults
+                
                 deleteRestraintDataFromUserDefaults(data)
-                // Отправляем уведомление об удалении данных
+                
                 NotificationCenter.default.post(name: NSNotification.Name("RestraintDataDeleted"), object: nil)
                 dismiss()
             }
@@ -143,10 +130,9 @@ struct RestraintDetailView: View {
         
         if let userData = userDefaults.data(forKey: restraintKey),
            var restraintData = try? JSONDecoder().decode([RestraintData].self, from: userData) {
-            // Удаляем данные из массива
-            restraintData.removeAll { $0.id == data.id }
             
-            // Сохраняем обновленный массив
+            restraintData.removeAll { $0.id == data.id }
+
             if let encoded = try? JSONEncoder().encode(restraintData) {
                 userDefaults.set(encoded, forKey: restraintKey)
             }
