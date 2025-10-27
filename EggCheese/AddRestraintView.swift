@@ -120,6 +120,14 @@ struct AddRestraintView: View {
                                         .font(.anton(.body))
                                         .textFieldStyle(PlainTextFieldStyle())
                                         .keyboardType(.numberPad)
+                                        .toolbar {
+                                            ToolbarItemGroup(placement: .keyboard) {
+                                                Spacer()
+                                                Button("Done") {
+                                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                                }
+                                            }
+                                        }
                                     
                                     if !restraintPeriod.isEmpty {
                                         Button(action: { restraintPeriod = "" }) {
@@ -290,6 +298,14 @@ struct AddRestraintView: View {
         }
         .navigationBarHidden(true)
         .onAppear {
+            if let editingData = editingData {
+                name = editingData.name
+                date = editingData.date
+                restraintPeriod = editingData.restraintPeriod
+                readinessDate = editingData.readinessDate
+                notes = editingData.notes
+                selectedStatus = editingData.status
+            }
             
             NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
         }
@@ -320,9 +336,13 @@ struct AddRestraintView: View {
             status: selectedStatus
         )
 
-        restraintManager.addRestraintData(newData)
-
-        NotificationCenter.default.post(name: NSNotification.Name("RestraintDataAdded"), object: nil)
+        if let editingIndex = editingIndex {
+            restraintManager.updateRestraintData(at: editingIndex, with: newData)
+            NotificationCenter.default.post(name: NSNotification.Name("RestraintDataUpdated"), object: nil)
+        } else {
+            restraintManager.addRestraintData(newData)
+            NotificationCenter.default.post(name: NSNotification.Name("RestraintDataAdded"), object: nil)
+        }
 
         showingDataCard = true
     }

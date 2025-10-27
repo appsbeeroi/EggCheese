@@ -87,6 +87,10 @@ struct RecipesView: View {
             
             recipeManager.loadRecipes()
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RecipeUpdated"))) { _ in
+            
+            recipeManager.loadRecipes()
+        }
     }
 }
 

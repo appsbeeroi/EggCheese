@@ -39,6 +39,13 @@ class RestraintManager: ObservableObject {
         saveRestraintData()
     }
     
+    func updateRestraintData(at index: Int, with newData: RestraintData) {
+        if index < restraintData.count {
+            restraintData[index] = newData
+            saveRestraintData()
+        }
+    }
+    
     func loadRestraintData() {
         if let data = userDefaults.data(forKey: restraintKey),
            let decoded = try? JSONDecoder().decode([RestraintData].self, from: data) {

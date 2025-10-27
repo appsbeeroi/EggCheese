@@ -47,29 +47,22 @@ struct SettingsView: View {
 
                         VStack(spacing: 10) {
                             HStack {
-                            Text("Notification")
-                                .font(.anton(.title3))
+                                Text("Notification")
+                                    .font(.anton(.title3))
                                     .foregroundColor(.black)
                                 
                                 Spacer()
                                 
-                                if notificationManager.canRequestPermission {
-                                    Button("Enable") {
-                                        notificationManager.requestPermission()
+                                Toggle("", isOn: .constant(notificationManager.isAuthorized))
+                                    .toggleStyle(SwitchToggleStyle(tint: .yellow))
+                                    .disabled(true)
+                                    .onTapGesture {
+                                        if notificationManager.canRequestPermission {
+                                            notificationManager.requestPermission()
+                                        } else if !notificationManager.isAuthorized {
+                                            notificationManager.openSettings()
+                                        }
                                     }
-                                    .foregroundColor(.blue)
-                                    .font(.anton(.headline))
-                                } else if notificationManager.isAuthorized {
-                                    Toggle("", isOn: .constant(true))
-                                        .toggleStyle(SwitchToggleStyle(tint: .yellow))
-                                        .disabled(true)
-                                } else {
-                                    Button("Settings") {
-                                        notificationManager.openSettings()
-                                    }
-                                    .foregroundColor(.blue)
-                                    .font(.anton(.headline))
-                                }
                             }
                             
                             if notificationManager.authorizationStatus == .denied {
@@ -78,9 +71,14 @@ struct SettingsView: View {
                                     .foregroundColor(.red)
                                     .multilineTextAlignment(.leading)
                             } else if notificationManager.authorizationStatus == .notDetermined {
-                                Text("Tap 'Enable' to allow notifications for batch reminders.")
+                                Text("Tap the toggle to allow notifications for batch reminders.")
                                     .font(.anton(.caption))
                                     .foregroundColor(.gray)
+                                    .multilineTextAlignment(.leading)
+                            } else {
+                                Text("Notifications are enabled for batch reminders.")
+                                    .font(.anton(.caption))
+                                    .foregroundColor(.green)
                                     .multilineTextAlignment(.leading)
                             }
                         }

@@ -88,6 +88,10 @@ struct RestraintView: View {
             
             restraintManager.loadRestraintData()
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RestraintDataUpdated"))) { _ in
+            
+            restraintManager.loadRestraintData()
+        }
     }
 }
 

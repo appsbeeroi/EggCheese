@@ -17,6 +17,8 @@ struct AddBatchView: View {
     @State private var showingBatchCard = false
     @State private var showingDeleteAlert = false
     
+    private let cheeseTypes = ["Soft Cheese", "Hard Cheese", "Mold Cheese", "Fresh Cheese", "Blue Cheese"]
+    
     init(editingBatch: Batch? = nil, editingIndex: Int? = nil) {
         self.editingBatch = editingBatch
         self.editingIndex = editingIndex
@@ -116,15 +118,26 @@ struct AddBatchView: View {
                                     .cornerRadius(25)
                                 }
 
-                                HStack {
-                                    TextField("Cheese Type", text: $cheeseType)
-                                        .font(.anton(.body))
-                                        .textFieldStyle(PlainTextFieldStyle())
+                                VStack(alignment: .leading, spacing: 10) {
+                                    Text("Cheese Type")
+                                        .font(.anton(.headline))
+                                        .foregroundColor(.brown)
                                     
-                                    if !cheeseType.isEmpty {
-                                        Button(action: { cheeseType = "" }) {
-                                            Image(systemName: "xmark.circle.fill")
-                                                .foregroundColor(.gray)
+                                    LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 10) {
+                                        ForEach(cheeseTypes, id: \.self) { type in
+                                            Button(action: { cheeseType = type }) {
+                                                Text(type)
+                                                    .font(.anton(.body))
+                                                    .foregroundColor(cheeseType == type ? .white : .brown)
+                                                    .padding(.horizontal, 16)
+                                                    .padding(.vertical, 12)
+                                                    .background(cheeseType == type ? Color.brown : Color.white)
+                                                    .cornerRadius(20)
+                                                    .overlay(
+                                                        RoundedRectangle(cornerRadius: 20)
+                                                            .stroke(Color.brown, lineWidth: cheeseType == type ? 0 : 2)
+                                                    )
+                                            }
                                         }
                                     }
                                 }
@@ -155,6 +168,14 @@ struct AddBatchView: View {
                                         .font(.anton(.body))
                                         .textFieldStyle(PlainTextFieldStyle())
                                         .keyboardType(.decimalPad)
+                                        .toolbar {
+                                            ToolbarItemGroup(placement: .keyboard) {
+                                                Spacer()
+                                                Button("Done") {
+                                                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                                                }
+                                            }
+                                        }
                                     
                                     if !volume.isEmpty {
                                         Button(action: { volume = "" }) {

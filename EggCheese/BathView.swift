@@ -89,6 +89,10 @@ struct BathView: View {
             
             batchManager.loadBatches()
         }
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchUpdated"))) { _ in
+            
+            batchManager.loadBatches()
+        }
     }
 }
 
