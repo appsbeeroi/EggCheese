@@ -43,6 +43,7 @@
 		4701AF943769CAD6AF200EB3 /* RecipeCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeCardView.swift; sourceTree = "<group>"; };
 		525B4220B9E14D4E7A57AC85 /* BatchDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatchDetailView.swift; sourceTree = "<group>"; };
 		527EA20E89B0CBE5C26481E5 /* AddRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
+		5F1C8E832EAF6110004706C2 /* EggCheese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EggCheese.entitlements; sourceTree = "<group>"; };
 		6233E3C4C2AB1E7421DC406B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6C36C186013E41244CA4B414 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		798279E75FDDDA27E7184AC6 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -70,6 +71,7 @@
 		E9195ADDC3D32ACF4B277D5E /* EggCheese */ = {
 			isa = PBXGroup;
 			children = (
+				5F1C8E832EAF6110004706C2 /* EggCheese.entitlements */,
 				798279E75FDDDA27E7184AC6 /* AboutView.swift */,
 				A087CF8A1141D6AF929BA27F /* AddBatchView.swift */,
 				527EA20E89B0CBE5C26481E5 /* AddRecipeView.swift */,
@@ -200,6 +202,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EggCheese/EggCheese.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
@@ -279,6 +282,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = EggCheese/EggCheese.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = "";
