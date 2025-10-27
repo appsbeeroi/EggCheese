@@ -118,46 +118,15 @@ struct AddBatchView: View {
                                     .cornerRadius(25)
                                 }
 
-                                VStack(alignment: .leading, spacing: 10) {
-                                    Text("Cheese Type")
-                                        .font(.anton(.headline))
-                                        .foregroundColor(.brown)
+                                HStack {
+                                    TextField("Cheese Type", text: $cheeseType)
+                                        .font(.anton(.body))
+                                        .textFieldStyle(PlainTextFieldStyle())
                                     
-                                    VStack(spacing: 10) {
-                                        HStack(spacing: 10) {
-                                            ForEach(Array(cheeseTypes.prefix(2)), id: \.self) { type in
-                                                Button(action: { cheeseType = type }) {
-                                                    Text(type)
-                                                        .font(.anton(.body))
-                                                        .foregroundColor(cheeseType == type ? .white : .brown)
-                                                        .padding(.horizontal, 16)
-                                                        .padding(.vertical, 12)
-                                                        .background(cheeseType == type ? Color.brown : Color.white)
-                                                        .cornerRadius(20)
-                                                        .overlay(
-                                                            RoundedRectangle(cornerRadius: 20)
-                                                                .stroke(Color.brown, lineWidth: cheeseType == type ? 0 : 2)
-                                                        )
-                                                }
-                                            }
-                                        }
-                                        
-                                        HStack(spacing: 10) {
-                                            ForEach(Array(cheeseTypes.dropFirst(2)), id: \.self) { type in
-                                                Button(action: { cheeseType = type }) {
-                                                    Text(type)
-                                                        .font(.anton(.body))
-                                                        .foregroundColor(cheeseType == type ? .white : .brown)
-                                                        .padding(.horizontal, 16)
-                                                        .padding(.vertical, 12)
-                                                        .background(cheeseType == type ? Color.brown : Color.white)
-                                                        .cornerRadius(20)
-                                                        .overlay(
-                                                            RoundedRectangle(cornerRadius: 20)
-                                                                .stroke(Color.brown, lineWidth: cheeseType == type ? 0 : 2)
-                                                        )
-                                                }
-                                            }
+                                    if !cheeseType.isEmpty {
+                                        Button(action: { cheeseType = "" }) {
+                                            Image(systemName: "xmark.circle.fill")
+                                                .foregroundColor(.gray)
                                         }
                                     }
                                 }
@@ -210,49 +179,57 @@ struct AddBatchView: View {
                                 .cornerRadius(25)
                             }
 
-                            VStack(spacing: 15) {
+                            VStack(alignment: .leading, spacing: 15) {
+                                Text("Status")
+                                    .font(.anton(.headline))
+                                    .foregroundColor(.brown)
+                                    .padding(.horizontal, 20)
                                 
-                                Button(action: { selectedStatus = "In production" }) {
-                                    VStack(spacing: 12) {
-                                        Image("inProdImage")
-                                            .resizable()
-                                            .frame(width: 40, height: 40)
+                                HStack(spacing: 15) {
+                                    
+                                    Button(action: { selectedStatus = "In production" }) {
+                                        VStack(spacing: 12) {
+                                            Image("inProdImage")
+                                                .resizable()
+                                                .frame(width: 40, height: 40)
 
-                                        Text("In production")
-                                            .font(.anton(.headline))
-                                            .foregroundColor(.brown)
+                                            Text("In production")
+                                                .font(.anton(.headline))
+                                                .foregroundColor(.brown)
+                                        }
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 20)
+                                        .background(Color.white)
+                                        .cornerRadius(20)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(selectedStatus == "In production" ? Color.brown : Color.clear, lineWidth: 3)
+                                        )
+                                        .shadow(color: selectedStatus == "In production" ? Color.brown.opacity(0.3) : Color.clear, radius: 5, x: 0, y: 2)
                                     }
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 20)
-                                    .background(Color.white)
-                                    .cornerRadius(20)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .stroke(selectedStatus == "In production" ? Color.brown : Color.clear, lineWidth: 3)
-                                    )
-                                    .shadow(color: selectedStatus == "In production" ? Color.brown.opacity(0.3) : Color.clear, radius: 5, x: 0, y: 2)
-                                }
 
-                                Button(action: { selectedStatus = "Ready" }) {
-                                    VStack(spacing: 12) {
-                                        Image("readyImage")
-                                            .resizable()
-                                            .frame(width: 40, height: 40)
+                                    Button(action: { selectedStatus = "Ready" }) {
+                                        VStack(spacing: 12) {
+                                            Image("readyImage")
+                                                .resizable()
+                                                .frame(width: 40, height: 40)
 
-                                        Text("Ready")
-                                            .font(.anton(.headline))
-                                            .foregroundColor(.brown)
+                                            Text("Ready")
+                                                .font(.anton(.headline))
+                                                .foregroundColor(.brown)
+                                        }
+                                        .frame(maxWidth: .infinity)
+                                        .padding(.vertical, 20)
+                                        .background(Color.white)
+                                        .cornerRadius(20)
+                                        .overlay(
+                                            RoundedRectangle(cornerRadius: 20)
+                                                .stroke(selectedStatus == "Ready" ? Color.brown : Color.clear, lineWidth: 3)
+                                        )
+                                        .shadow(color: selectedStatus == "Ready" ? Color.brown.opacity(0.3) : Color.clear, radius: 5, x: 0, y: 2)
                                     }
-                                    .frame(maxWidth: .infinity)
-                                    .padding(.vertical, 20)
-                                    .background(Color.white)
-                                    .cornerRadius(20)
-                                    .overlay(
-                                        RoundedRectangle(cornerRadius: 20)
-                                            .stroke(selectedStatus == "Ready" ? Color.brown : Color.clear, lineWidth: 3)
-                                    )
-                                    .shadow(color: selectedStatus == "Ready" ? Color.brown.opacity(0.3) : Color.clear, radius: 5, x: 0, y: 2)
                                 }
+                                .padding(.horizontal, 20)
                             }
 
                             TextField("Notes", text: $notes, axis: .vertical)
@@ -360,10 +337,6 @@ struct AddBatchView: View {
         }
                 .navigationBarHidden(true)
                 .onAppear {
-                    print("🔍 AddBatchView: onAppear called")
-                    print("🔍 AddBatchView: editingBatch: \(editingBatch?.name ?? "nil")")
-                    print("🔍 AddBatchView: editingIndex: \(editingIndex ?? -1)")
-                    
                     if let editingBatch = editingBatch {
                         name = editingBatch.name
                         date = editingBatch.date
@@ -372,8 +345,6 @@ struct AddBatchView: View {
                         volume = editingBatch.volume
                         selectedStatus = editingBatch.status
                         notes = editingBatch.notes
-                        
-                        print("🔍 AddBatchView: Form populated with batch data")
                     }
                     
                     NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
@@ -395,9 +366,6 @@ struct AddBatchView: View {
     }
     
     private func saveBatch() {
-        print("🔍 AddBatchView: saveBatch called")
-        print("🔍 AddBatchView: editingIndex: \(editingIndex ?? -1)")
-        
         let newBatch = Batch(
             name: name,
             date: date,
@@ -409,11 +377,9 @@ struct AddBatchView: View {
         )
 
         if let editingIndex = editingIndex {
-            print("🔍 AddBatchView: Updating batch at index \(editingIndex)")
             batchManager.updateBatch(at: editingIndex, with: newBatch)
             NotificationCenter.default.post(name: NSNotification.Name("BatchUpdated"), object: nil)
         } else {
-            print("🔍 AddBatchView: Adding new batch")
             batchManager.addBatch(newBatch)
             NotificationCenter.default.post(name: NSNotification.Name("BatchAdded"), object: nil)
         }

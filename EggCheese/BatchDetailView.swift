@@ -7,10 +7,7 @@ struct BatchDetailView: View {
     @State private var showingDeleteAlert = false
     
     private var batchIndex: Int? {
-        let index = batchManager.batches.firstIndex { $0.name == batch.name }
-        print("🔍 BatchDetailView: Looking for batch '\(batch.name)', found index: \(index ?? -1)")
-        print("🔍 BatchDetailView: Total batches: \(batchManager.batches.count)")
-        return index
+        batchManager.batches.firstIndex { $0.name == batch.name }
     }
     
     var body: some View {

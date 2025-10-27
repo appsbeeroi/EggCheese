@@ -79,9 +79,7 @@ struct BathView: View {
             }
         }
         .onAppear {
-            print("🔍 BathView: onAppear called")
             batchManager.loadBatches()
-            print("🔍 BathView: Loaded \(batchManager.batches.count) batches")
         }
         .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchAdded"))) { _ in
             
