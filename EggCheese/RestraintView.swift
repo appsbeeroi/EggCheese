@@ -51,8 +51,8 @@ struct RestraintView: View {
                         
                         ScrollView {
                             LazyVStack(spacing: 15) {
-                                ForEach(restraintManager.restraintData) { data in
-                                    RestraintCardView(data: data)
+                                ForEach(Array(restraintManager.restraintData.enumerated()), id: \.element.id) { index, data in
+                                    RestraintCardView(data: data, index: index)
                                 }
 
                                 NavigationLink(destination: AddRestraintView()) {

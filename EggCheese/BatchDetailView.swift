@@ -26,16 +26,24 @@ struct BatchDetailView: View {
                     
                     Spacer()
 
-                    Text("Edit batch")
+                    Text("Batch Details")
                         .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
 
-                    Button(action: { showingDeleteAlert = true }) {
-                        Text("Delete")
-                            .foregroundColor(.red)
-                            .font(.anton(.headline))
+                    HStack(spacing: 15) {
+                        NavigationLink(destination: AddBatchView(editingBatch: batch, editingIndex: index)) {
+                            Text("Edit")
+                                .foregroundColor(.blue)
+                                .font(.anton(.headline))
+                        }
+                        
+                        Button(action: { showingDeleteAlert = true }) {
+                            Text("Delete")
+                                .foregroundColor(.red)
+                                .font(.anton(.headline))
+                        }
                     }
                 }
                 .padding(.horizontal, 20)
@@ -43,6 +51,7 @@ struct BatchDetailView: View {
 
                 VStack {
                     Spacer()
+                        .frame(height: 20)
                     
                     VStack(spacing: 20) {
                         

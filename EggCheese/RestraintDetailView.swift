@@ -2,6 +2,7 @@ import SwiftUI
 
 struct RestraintDetailView: View {
     let data: RestraintData
+    let index: Int
     @Environment(\.dismiss) private var dismiss
     @State private var showingDeleteAlert = false
     
@@ -25,16 +26,24 @@ struct RestraintDetailView: View {
                     
                     Spacer()
 
-                    Text("Edit restraint data")
+                    Text("Restraint Details")
                         .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
 
-                    Button(action: { showingDeleteAlert = true }) {
-                        Text("Delete")
-                            .foregroundColor(.red)
-                            .font(.anton(.headline))
+                    HStack(spacing: 15) {
+                        NavigationLink(destination: AddRestraintView(editingData: data, editingIndex: index)) {
+                            Text("Edit")
+                                .foregroundColor(.blue)
+                                .font(.anton(.headline))
+                        }
+                        
+                        Button(action: { showingDeleteAlert = true }) {
+                            Text("Delete")
+                                .foregroundColor(.red)
+                                .font(.anton(.headline))
+                        }
                     }
                 }
                 .padding(.horizontal, 20)
@@ -42,6 +51,7 @@ struct RestraintDetailView: View {
 
                 VStack {
                     Spacer()
+                        .frame(height: 20)
                     
                     VStack(spacing: 20) {
                         
@@ -154,5 +164,5 @@ struct RestraintDetailView: View {
         readinessDate: Calendar.current.date(byAdding: .day, value: 30, to: Date()) ?? Date(),
         notes: "Track ripening progress",
         status: "In production"
-    ))
+    ), index: 0)
 }

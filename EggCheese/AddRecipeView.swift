@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct AddRecipeView: View {
+    let editingRecipe: Recipe?
+    let editingIndex: Int?
+    
     @Environment(\.dismiss) private var dismiss
     @StateObject private var recipeManager = RecipeManager()
     @State private var name = ""
@@ -9,6 +12,11 @@ struct AddRecipeView: View {
     @State private var notes = ""
     @State private var showingRecipeCard = false
     @State private var showingDeleteAlert = false
+    
+    init(editingRecipe: Recipe? = nil, editingIndex: Int? = nil) {
+        self.editingRecipe = editingRecipe
+        self.editingIndex = editingIndex
+    }
 
     private var isFormValid: Bool {
         !name.isEmpty && !ingredientsText.isEmpty && !preparationStepsText.isEmpty
@@ -34,7 +42,7 @@ struct AddRecipeView: View {
                     
                     Spacer()
 
-                    Text(showingRecipeCard ? "" : "Add recipe")
+                    Text(editingRecipe != nil ? "Edit recipe" : "Add recipe")
                         .font(.anton(.title))
                         .foregroundColor(.white)
                     
@@ -212,6 +220,12 @@ struct AddRecipeView: View {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
         }
         .onAppear {
+            if let editingRecipe = editingRecipe {
+                name = editingRecipe.name
+                ingredientsText = editingRecipe.ingredients.joined(separator: "\n")
+                preparationStepsText = editingRecipe.preparationSteps.joined(separator: "\n")
+                notes = editingRecipe.notes
+            }
             
             NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
         }
@@ -232,7 +246,6 @@ struct AddRecipeView: View {
     }
     
     private func saveRecipe() {
-        
         let newRecipe = Recipe(
             name: name,
             ingredients: ingredientsText.components(separatedBy: "\n").filter { !$0.isEmpty },
@@ -240,9 +253,13 @@ struct AddRecipeView: View {
             notes: notes
         )
 
-        recipeManager.addRecipe(newRecipe)
-
-        NotificationCenter.default.post(name: NSNotification.Name("RecipeAdded"), object: nil)
+        if let editingIndex = editingIndex {
+            recipeManager.updateRecipe(at: editingIndex, with: newRecipe)
+            NotificationCenter.default.post(name: NSNotification.Name("RecipeUpdated"), object: nil)
+        } else {
+            recipeManager.addRecipe(newRecipe)
+            NotificationCenter.default.post(name: NSNotification.Name("RecipeAdded"), object: nil)
+        }
 
         showingRecipeCard = true
     }

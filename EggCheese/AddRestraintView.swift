@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct AddRestraintView: View {
+    let editingData: RestraintData?
+    let editingIndex: Int?
+    
     @Environment(\.dismiss) private var dismiss
     @StateObject private var restraintManager = RestraintManager()
     @State private var name = ""
@@ -12,6 +15,11 @@ struct AddRestraintView: View {
     @State private var showingCalendar = false
     @State private var showingDataCard = false
     @State private var showingDeleteAlert = false
+    
+    init(editingData: RestraintData? = nil, editingIndex: Int? = nil) {
+        self.editingData = editingData
+        self.editingIndex = editingIndex
+    }
 
     private var isFormValid: Bool {
         !name.isEmpty && !restraintPeriod.isEmpty
@@ -107,6 +115,7 @@ struct AddRestraintView: View {
                                 HStack {
                                     TextField("Aging Period", text: $restraintPeriod)
                                         .textFieldStyle(PlainTextFieldStyle())
+                                        .keyboardType(.numberPad)
                                     
                                     if !restraintPeriod.isEmpty {
                                         Button(action: { restraintPeriod = "" }) {

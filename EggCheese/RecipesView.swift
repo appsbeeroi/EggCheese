@@ -51,8 +51,8 @@ struct RecipesView: View {
                         
                         ScrollView {
                             LazyVStack(spacing: 15) {
-                                ForEach(recipeManager.recipes) { recipe in
-                                    RecipeCardView(recipe: recipe)
+                                ForEach(Array(recipeManager.recipes.enumerated()), id: \.element.id) { index, recipe in
+                                    RecipeCardView(recipe: recipe, index: index)
                                 }
 
                                 NavigationLink(destination: AddRecipeView()) {

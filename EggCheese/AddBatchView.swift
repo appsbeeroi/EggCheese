@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct AddBatchView: View {
+    let editingBatch: Batch?
+    let editingIndex: Int?
+    
     @Environment(\.dismiss) private var dismiss
     @StateObject private var batchManager = BatchManager()
     @State private var name = ""
@@ -13,6 +16,11 @@ struct AddBatchView: View {
     @State private var showingCalendar = false
     @State private var showingBatchCard = false
     @State private var showingDeleteAlert = false
+    
+    init(editingBatch: Batch? = nil, editingIndex: Int? = nil) {
+        self.editingBatch = editingBatch
+        self.editingIndex = editingIndex
+    }
 
     private var isFormValid: Bool {
         !name.isEmpty && !cheeseType.isEmpty && !milkType.isEmpty && !volume.isEmpty
@@ -38,7 +46,7 @@ struct AddBatchView: View {
                     
                     Spacer()
 
-                    Text(showingBatchCard ? "" : "Add batch")
+                    Text(editingBatch != nil ? "Edit batch" : "Add batch")
                         .font(.anton(.title))
                         .foregroundColor(.white)
                     
@@ -138,6 +146,7 @@ struct AddBatchView: View {
                                 HStack {
                                     TextField("Volume", text: $volume)
                                         .textFieldStyle(PlainTextFieldStyle())
+                                        .keyboardType(.decimalPad)
                                     
                                     if !volume.isEmpty {
                                         Button(action: { volume = "" }) {
@@ -292,6 +301,15 @@ struct AddBatchView: View {
         }
                 .navigationBarHidden(true)
                 .onAppear {
+                    if let editingBatch = editingBatch {
+                        name = editingBatch.name
+                        date = editingBatch.date
+                        cheeseType = editingBatch.cheeseType
+                        milkType = editingBatch.milkType
+                        volume = editingBatch.volume
+                        selectedStatus = editingBatch.status
+                        notes = editingBatch.notes
+                    }
                     
                     NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
                 }
@@ -312,7 +330,6 @@ struct AddBatchView: View {
     }
     
     private func saveBatch() {
-        
         let newBatch = Batch(
             name: name,
             date: date,
@@ -323,9 +340,13 @@ struct AddBatchView: View {
             notes: notes
         )
 
-        batchManager.addBatch(newBatch)
-
-        NotificationCenter.default.post(name: NSNotification.Name("BatchAdded"), object: nil)
+        if let editingIndex = editingIndex {
+            batchManager.updateBatch(at: editingIndex, with: newBatch)
+            NotificationCenter.default.post(name: NSNotification.Name("BatchUpdated"), object: nil)
+        } else {
+            batchManager.addBatch(newBatch)
+            NotificationCenter.default.post(name: NSNotification.Name("BatchAdded"), object: nil)
+        }
 
         showingBatchCard = true
     }

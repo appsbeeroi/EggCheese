@@ -3,6 +3,7 @@ import SwiftUI
 struct RecipeDetailView: View {
     @Environment(\.dismiss) private var dismiss
     let recipe: Recipe
+    let index: Int
     
     @State private var showingDeleteAlert = false
     
@@ -26,16 +27,24 @@ struct RecipeDetailView: View {
                     
                     Spacer()
 
-                    Text("Edit recipe")
+                    Text("Recipe Details")
                         .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
 
-                    Button(action: { showingDeleteAlert = true }) {
-                        Text("Delete")
-                            .foregroundColor(.red)
-                            .font(.anton(.headline))
+                    HStack(spacing: 15) {
+                        NavigationLink(destination: AddRecipeView(editingRecipe: recipe, editingIndex: index)) {
+                            Text("Edit")
+                                .foregroundColor(.blue)
+                                .font(.anton(.headline))
+                        }
+                        
+                        Button(action: { showingDeleteAlert = true }) {
+                            Text("Delete")
+                                .foregroundColor(.red)
+                                .font(.anton(.headline))
+                        }
                     }
                 }
                 .padding(.horizontal, 20)
@@ -43,6 +52,7 @@ struct RecipeDetailView: View {
 
                 VStack {
                     Spacer()
+                        .frame(height: 20)
                     
                     VStack(spacing: 20) {
                         
@@ -151,5 +161,5 @@ struct RecipeDetailView: View {
         ingredients: ["Goat milk 8 L", "Rennet 0.5 tsp", "Salt 30 g"],
         preparationSteps: ["Heat milk", "Add rennet", "Mold", "Age"],
         notes: "Very delicate texture"
-    ))
+    ), index: 0)
 }

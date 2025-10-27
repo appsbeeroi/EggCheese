@@ -16,10 +16,6 @@
         <string>1.0</string>
         <key>CFBundleVersion</key>
         <string>1</string>
-        <key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-        <string>This app needs access to location to show your nests on the map.</string>
-        <key>NSLocationWhenInUseUsageDescription</key>
-        <string>This app needs access to location to show your nests on the map.</string>
         <key>UIApplicationSceneManifest</key>
         <dict>
             <key>UIApplicationSupportsMultipleScenes</key>

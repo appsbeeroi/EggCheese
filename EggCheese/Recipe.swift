@@ -35,6 +35,13 @@ class RecipeManager: ObservableObject {
         saveRecipes()
     }
     
+    func updateRecipe(at index: Int, with newRecipe: Recipe) {
+        if index < recipes.count {
+            recipes[index] = newRecipe
+            saveRecipes()
+        }
+    }
+    
     func loadRecipes() {
         if let data = userDefaults.data(forKey: recipesKey),
            let decoded = try? JSONDecoder().decode([Recipe].self, from: data) {

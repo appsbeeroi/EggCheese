@@ -41,6 +41,13 @@ class BatchManager: ObservableObject {
         saveBatches()
     }
     
+    func updateBatch(at index: Int, with newBatch: Batch) {
+        if index < batches.count {
+            batches[index] = newBatch
+            saveBatches()
+        }
+    }
+    
     func loadBatches() {
         if let data = userDefaults.data(forKey: batchesKey),
            let decoded = try? JSONDecoder().decode([Batch].self, from: data) {
