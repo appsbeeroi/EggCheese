@@ -21,8 +21,7 @@ struct BathView: View {
                 
                 VStack {
                     Text("Batch Counting")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+                        .font(.anton(.largeTitle))
                         .foregroundColor(.white)
                         .padding(.top, 80)
                     
@@ -32,18 +31,17 @@ struct BathView: View {
                             Image("bathImage")
                             
                             Text("No parties yet")
-                                .font(.title)
-                                .fontWeight(.bold)
+                                .font(.anton(.title))
                                 .foregroundColor(.black)
                             
                             Text("You have not added a single batch of cheese yet")
-                                .font(.body)
+                                .font(.anton(.body))
                                 .foregroundColor(.brown)
                                 .multilineTextAlignment(.center)
                             
                             NavigationLink(destination: AddBatchView()) {
                                 Text("Add batch")
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                                     .foregroundColor(.brown)
                                     .frame(maxWidth: .infinity)
                                     .padding()
@@ -67,7 +65,7 @@ struct BathView: View {
                                 // Кнопка добавления
                                 NavigationLink(destination: AddBatchView()) {
                                     Text("Add batch")
-                                        .font(.headline)
+                                        .font(.anton(.headline))
                                         .foregroundColor(.brown)
                                         .frame(maxWidth: .infinity)
                                         .padding()

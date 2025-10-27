@@ -47,8 +47,7 @@ struct AddRestraintView: View {
                     
                     // Заголовок (пустой, если показывается карточка)
                     Text(showingDataCard ? "" : "Add data")
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
@@ -59,12 +58,12 @@ struct AddRestraintView: View {
                             Button(action: { showingDataCard = false }) {
                                 Text("Edit")
                                     .foregroundColor(.blue)
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                             }
                             Button(action: { showingDeleteAlert = true }) {
                                 Text("Delete")
                                     .foregroundColor(.red)
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                             }
                         }
                     } else {
@@ -156,7 +155,7 @@ struct AddRestraintView: View {
                                     VStack(spacing: 12) {
                                         Image("inProdImage")
                                         Text("In production")
-                                            .font(.headline)
+                                            .font(.anton(.headline))
                                             .foregroundColor(.brown)
                                     }
                                     .frame(maxWidth: .infinity)
@@ -174,7 +173,7 @@ struct AddRestraintView: View {
                                     VStack(spacing: 12) {
                                         Image("readyImage")
                                         Text("Ready")
-                                            .font(.headline)
+                                            .font(.anton(.headline))
                                             .foregroundColor(.brown)
                                     }
                                     .frame(maxWidth: .infinity)
@@ -216,14 +215,13 @@ struct AddRestraintView: View {
                                 Image("bathImage")
                                 
                                 Text("Restraint")
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                                     .foregroundColor(.brown)
                             }
                             
                             // Название
                             Text(name)
-                                .font(.title)
-                                .fontWeight(.bold)
+                                .font(.anton(.title))
                                 .foregroundColor(.brown)
                             
                             // Детали
@@ -255,14 +253,14 @@ struct AddRestraintView: View {
                             HStack {
                                 Button(action: { showingCalendar = false }) {
                                     Image(systemName: "xmark")
-                                        .font(.title2)
+                                        .font(.anton(.title2))
                                         .foregroundColor(.gray)
                                 }
                                 
                                 Spacer()
                                 
                                 Text("Select Date")
-                                    .font(.title2)
+                                    .font(.anton(.title2))
                                     .fontWeight(.semibold)
                                     .foregroundColor(.brown)
                                 
@@ -270,7 +268,7 @@ struct AddRestraintView: View {
                                 
                                 Button(action: { showingCalendar = false }) {
                                     Text("Done")
-                                        .font(.headline)
+                                        .font(.anton(.headline))
                                         .foregroundColor(.blue)
                                 }
                             }

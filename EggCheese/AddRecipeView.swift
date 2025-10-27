@@ -44,8 +44,7 @@ struct AddRecipeView: View {
                     
                     // Заголовок (пустой, если показывается карточка)
                     Text(showingRecipeCard ? "" : "Add recipe")
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
@@ -56,12 +55,12 @@ struct AddRecipeView: View {
                             Button(action: { showingRecipeCard = false }) {
                                 Text("Edit")
                                     .foregroundColor(.blue)
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                             }
                             Button(action: { showingDeleteAlert = true }) {
                                 Text("Delete")
                                     .foregroundColor(.red)
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                             }
                         }
                     } else {
@@ -170,23 +169,22 @@ struct AddRecipeView: View {
                             // Детали
                             VStack(alignment: .leading, spacing: 15) {
                                 Text(name)
-                                    .font(.title)
-                                    .fontWeight(.bold)
+                                    .font(.anton(.title))
                                     .foregroundColor(.black)
                                 if !notes.isEmpty {
                                     VStack(alignment: .leading, spacing: 5) {
                                         Text("Notes")
-                                            .font(.headline)
+                                            .font(.anton(.headline))
                                             .foregroundColor(.brown)
                                         Text(notes)
-                                            .font(.body)
+                                            .font(.anton(.body))
                                             .foregroundColor(.black)
                                     }
                                 }
                                 
                                 VStack(alignment: .leading, spacing: 5) {
                                     Text("Ingredients")
-                                        .font(.headline)
+                                        .font(.anton(.headline))
                                         .foregroundColor(.brown)
                                     ForEach(ingredientsText.components(separatedBy: "\n").filter { !$0.isEmpty }, id: \.self) { ingredient in
                                         HStack {
@@ -201,7 +199,7 @@ struct AddRecipeView: View {
                                 
                                 VStack(alignment: .leading, spacing: 5) {
                                     Text("Preparation Steps")
-                                        .font(.headline)
+                                        .font(.anton(.headline))
                                         .foregroundColor(.brown)
                                     ForEach(Array(preparationStepsText.components(separatedBy: "\n").filter { !$0.isEmpty }.enumerated()), id: \.offset) { index, step in
                                         HStack {

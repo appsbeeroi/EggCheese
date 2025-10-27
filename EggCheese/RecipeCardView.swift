@@ -25,8 +25,7 @@ struct RecipeCardView: View {
                 
                 // Центральная часть - название рецепта
                 Text(recipe.name)
-                    .font(.title2)
-                    .fontWeight(.bold)
+                    .font(.anton(.title2))
                     .foregroundColor(.brown)
                     .padding(.leading, 15)
                 
@@ -35,7 +34,7 @@ struct RecipeCardView: View {
                 // Правая часть - стрелка
                 Image(systemName: "chevron.right")
                     .foregroundColor(.yellow)
-                    .font(.title3)
+                    .font(.anton(.title3))
                     .padding(.trailing, 15)
             }
             .padding(.vertical, 15)

@@ -48,8 +48,7 @@ struct AddBatchView: View {
                     
                     // Заголовок (пустой, если показывается карточка)
                     Text(showingBatchCard ? "" : "Add batch")
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
@@ -60,12 +59,12 @@ struct AddBatchView: View {
                             Button(action: { showingBatchCard = false }) {
                                 Text("Edit")
                                     .foregroundColor(.blue)
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                             }
                             Button(action: { showingDeleteAlert = true }) {
                                 Text("Delete")
                                     .foregroundColor(.red)
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                             }
                         }
                     } else {
@@ -177,7 +176,7 @@ struct AddBatchView: View {
 //                                            .frame(width: 30, height: 30)
                                         
                                         Text("In production")
-                                            .font(.headline)
+                                            .font(.anton(.headline))
                                             .foregroundColor(.brown)
                                     }
                                     .frame(maxWidth: .infinity)
@@ -198,7 +197,7 @@ struct AddBatchView: View {
 //                                            .frame(width: 30, height: 30)
                                         
                                         Text("Ready")
-                                            .font(.headline)
+                                            .font(.anton(.headline))
                                             .foregroundColor(.brown)
                                     }
                                     .frame(maxWidth: .infinity)
@@ -242,14 +241,13 @@ struct AddBatchView: View {
 //                                    .frame(width: 40, height: 40)
                                 
                                 Text(selectedStatus)
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                                     .foregroundColor(.brown)
                             }
                             
                             // Название batch
                             Text(name)
-                                .font(.title)
-                                .fontWeight(.bold)
+                                .font(.anton(.title))
                                 .foregroundColor(.brown)
                             
                             // Детали
@@ -282,14 +280,14 @@ struct AddBatchView: View {
                             HStack {
                                 Button(action: { showingCalendar = false }) {
                                     Image(systemName: "xmark")
-                                        .font(.title2)
+                                        .font(.anton(.title2))
                                         .foregroundColor(.gray)
                                 }
                                 
                                 Spacer()
                                 
                                 Text("Select Date")
-                                    .font(.title2)
+                                    .font(.anton(.title2))
                                     .fontWeight(.semibold)
                                     .foregroundColor(.brown)
                                 
@@ -297,7 +295,7 @@ struct AddBatchView: View {
                                 
                                 Button(action: { showingCalendar = false }) {
                                     Text("Done")
-                                        .font(.headline)
+                                        .font(.anton(.headline))
                                         .foregroundColor(.blue)
                                 }
                             }
@@ -410,13 +408,13 @@ struct DetailRow: View {
     var body: some View {
         HStack {
             Text(title)
-                .font(.subheadline)
+                .font(.anton(.subheadline))
                 .foregroundColor(.gray)
                 .frame(width: 100, alignment: .leading)
             Spacer()
 
             Text(value)
-                .font(.subheadline)
+                .font(.anton(.subheadline))
                 .foregroundColor(.brown)
             
         }

@@ -35,8 +35,7 @@ struct RecipeDetailView: View {
                     
                     // Заголовок
                     Text("Edit recipe")
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
@@ -45,7 +44,7 @@ struct RecipeDetailView: View {
                     Button(action: { showingDeleteAlert = true }) {
                         Text("Delete")
                             .foregroundColor(.red)
-                            .font(.headline)
+                            .font(.anton(.headline))
                     }
                 }
                 .padding(.horizontal, 20)
@@ -63,8 +62,7 @@ struct RecipeDetailView: View {
                         
                         // Название рецепта
                         Text(recipe.name)
-                            .font(.title)
-                            .fontWeight(.bold)
+                            .font(.anton(.title))
                             .foregroundColor(.brown)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
@@ -73,17 +71,17 @@ struct RecipeDetailView: View {
                             if !recipe.notes.isEmpty {
                                 VStack(alignment: .leading, spacing: 5) {
                                     Text("Notes")
-                                        .font(.headline)
+                                        .font(.anton(.headline))
                                         .foregroundColor(.brown)
                                     Text(recipe.notes)
-                                        .font(.body)
+                                        .font(.anton(.body))
                                         .foregroundColor(.black)
                                 }
                             }
                             
                             VStack(alignment: .leading, spacing: 5) {
                                 Text("Ingredients")
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                                     .foregroundColor(.brown)
                                 ForEach(recipe.ingredients, id: \.self) { ingredient in
                                     HStack {
@@ -98,7 +96,7 @@ struct RecipeDetailView: View {
                             
                             VStack(alignment: .leading, spacing: 5) {
                                 Text("Preparation Steps")
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                                     .foregroundColor(.brown)
                                 ForEach(Array(recipe.preparationSteps.enumerated()), id: \.offset) { index, step in
                                     HStack {

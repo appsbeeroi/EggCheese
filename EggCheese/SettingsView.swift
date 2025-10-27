@@ -25,8 +25,7 @@ struct SettingsView: View {
                 
                 VStack {
                     Text("Settings")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+                        .font(.anton(.largeTitle))
                         .foregroundColor(.white)
                         .padding(.top, 80)
                     
@@ -38,8 +37,7 @@ struct SettingsView: View {
                             NavigationLink(destination: AboutView()) {
                                 HStack {
                                     Text("About the app")
-                                        .font(.title3)
-                                        .bold()
+                                        .font(.anton(.title3))
                                         .foregroundColor(.black)
                                     
                                     Spacer()
@@ -57,9 +55,8 @@ struct SettingsView: View {
                         // Notification
                         VStack(spacing: 10) {
                             HStack {
-                                Text("Notification")
-                                    .font(.title3)
-                                    .bold()
+                            Text("Notification")
+                                .font(.anton(.title3))
                                     .foregroundColor(.black)
                                 
                                 Spacer()
@@ -69,7 +66,7 @@ struct SettingsView: View {
                                         notificationManager.requestPermission()
                                     }
                                     .foregroundColor(.blue)
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                                 } else if notificationManager.isAuthorized {
                                     Toggle("", isOn: .constant(true))
                                         .toggleStyle(SwitchToggleStyle(tint: .yellow))
@@ -79,18 +76,18 @@ struct SettingsView: View {
                                         notificationManager.openSettings()
                                     }
                                     .foregroundColor(.blue)
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                                 }
                             }
                             
                             if notificationManager.authorizationStatus == .denied {
                                 Text("Notifications are disabled. Enable them in Settings to receive alerts.")
-                                    .font(.caption)
+                                    .font(.anton(.caption))
                                     .foregroundColor(.red)
                                     .multilineTextAlignment(.leading)
                             } else if notificationManager.authorizationStatus == .notDetermined {
                                 Text("Tap 'Enable' to allow notifications for batch reminders.")
-                                    .font(.caption)
+                                    .font(.anton(.caption))
                                     .foregroundColor(.gray)
                                     .multilineTextAlignment(.leading)
                             }
@@ -102,8 +99,7 @@ struct SettingsView: View {
                         // History
                         HStack {
                             Text("History")
-                                .font(.title3)
-                                .bold()
+                                .font(.anton(.title3))
                                 .foregroundColor(.black)
                             
                             Spacer()
@@ -111,7 +107,7 @@ struct SettingsView: View {
                             Button(action: { showingClearHistoryAlert = true }) {
                                 Text("Clear")
                                     .foregroundColor(.red)
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                             }
                         }
                         .padding()

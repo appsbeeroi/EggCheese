@@ -21,8 +21,7 @@ struct RestraintView: View {
                 
                 VStack {
                     Text("Restraint & readiness")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+                        .font(.anton(.largeTitle))
                         .foregroundColor(.white)
                         .padding(.top, 80)
                     
@@ -32,18 +31,17 @@ struct RestraintView: View {
                             Image("cheeseImage")
                             
                             Text("No retention data")
-                                .font(.title)
-                                .fontWeight(.bold)
+                                .font(.anton(.title))
                                 .foregroundColor(.black)
                             
                             Text("There are currently no batches to track ripening times")
-                                .font(.body)
+                                .font(.anton(.body))
                                 .foregroundColor(.brown)
                                 .multilineTextAlignment(.center)
                             
                             NavigationLink(destination: AddRestraintView()) {
                                 Text("Add data")
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                                     .foregroundColor(.brown)
                                     .frame(maxWidth: .infinity)
                                     .padding()
@@ -67,7 +65,7 @@ struct RestraintView: View {
                                 // Кнопка добавления
                                 NavigationLink(destination: AddRestraintView()) {
                                     Text("Add data")
-                                        .font(.headline)
+                                        .font(.anton(.headline))
                                         .foregroundColor(.brown)
                                         .frame(maxWidth: .infinity)
                                         .padding()

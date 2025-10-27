@@ -26,24 +26,23 @@ struct RestraintCardView: View {
                     }
                     
                     Text(data.status)
-                        .font(.caption)
+                        .font(.anton(.caption))
                         .foregroundColor(.brown)
                 }
                 
                 // Центральная часть - название и даты
                 VStack(alignment: .leading, spacing: 4) {
                     Text(data.name)
-                        .font(.title2)
-                        .fontWeight(.bold)
+                        .font(.anton(.title2))
                         .foregroundColor(.brown)
                     
                     HStack(spacing: 8) {
                         Text(dateFormatter.string(from: data.date))
-                            .font(.caption)
+                            .font(.anton(.caption))
                             .foregroundColor(.gray)
                         
                         Text(dateFormatter.string(from: data.readinessDate))
-                            .font(.caption)
+                            .font(.anton(.caption))
                             .foregroundColor(.gray)
                     }
                 }
@@ -53,7 +52,7 @@ struct RestraintCardView: View {
                 // Правая часть - стрелка
                 Image(systemName: "chevron.right")
                     .foregroundColor(.yellow)
-                    .font(.title3)
+                    .font(.anton(.title3))
             }
             .padding()
             .background(Color.white)

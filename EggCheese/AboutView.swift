@@ -32,8 +32,7 @@ struct AboutView: View {
                     
                     // Заголовок
                     Text("About the app")
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
@@ -55,12 +54,11 @@ struct AboutView: View {
                                 .frame(width: 100, height: 100)
                             
                             Text("EggCheese")
-                                .font(.largeTitle)
-                                .fontWeight(.bold)
+                                .font(.anton(.largeTitle))
                                 .foregroundColor(.brown)
                             
                             Text("Your Cheese Making Companion")
-                                .font(.title3)
+                                .font(.anton(.title3))
                                 .foregroundColor(.brown)
                         }
                         .padding()
@@ -70,17 +68,16 @@ struct AboutView: View {
                         // Описание приложения
                         VStack(alignment: .leading, spacing: 15) {
                             Text("About EggCheese")
-                                .font(.title2)
-                                .fontWeight(.bold)
+                                .font(.anton(.title2))
                                 .foregroundColor(.brown)
                             
                             Text("EggCheese is your ultimate companion for cheese making. Track your batches, manage recipes, and monitor the aging process of your artisanal cheeses.")
-                                .font(.body)
+                                .font(.anton(.body))
                                 .foregroundColor(.black)
                                 .multilineTextAlignment(.leading)
                             
                             Text("Features:")
-                                .font(.headline)
+                                .font(.anton(.headline))
                                 .foregroundColor(.brown)
                                 .padding(.top, 10)
                             
@@ -98,11 +95,11 @@ struct AboutView: View {
                         // Информация о версии
                         VStack(spacing: 10) {
                             Text("Version 1.0.0")
-                                .font(.headline)
+                                .font(.anton(.headline))
                                 .foregroundColor(.brown)
                             
                             Text("Made with ❤️ for cheese lovers")
-                                .font(.subheadline)
+                                .font(.anton(.subheadline))
                                 .foregroundColor(.gray)
                         }
                         .padding()
@@ -139,7 +136,7 @@ struct FeatureRow: View {
                 .frame(width: 20, height: 20)
             
             Text(text)
-                .font(.body)
+                .font(.anton(.body))
                 .foregroundColor(.black)
             
             Spacer()

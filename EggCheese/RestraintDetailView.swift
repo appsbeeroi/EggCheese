@@ -34,8 +34,7 @@ struct RestraintDetailView: View {
                     
                     // Заголовок
                     Text("Edit restraint data")
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
@@ -44,7 +43,7 @@ struct RestraintDetailView: View {
                     Button(action: { showingDeleteAlert = true }) {
                         Text("Delete")
                             .foregroundColor(.red)
-                            .font(.headline)
+                            .font(.anton(.headline))
                     }
                 }
                 .padding(.horizontal, 20)
@@ -62,14 +61,13 @@ struct RestraintDetailView: View {
                                 .frame(width: 50, height: 50)
                             
                             Text(data.status)
-                                .font(.headline)
+                                .font(.anton(.headline))
                                 .foregroundColor(.yellow)
                         }
                         
                         // Название
                         Text(data.name)
-                            .font(.title)
-                            .fontWeight(.bold)
+                            .font(.anton(.title))
                             .foregroundColor(.brown)
                             .frame(maxWidth: .infinity, alignment: .leading)
                         
@@ -77,21 +75,19 @@ struct RestraintDetailView: View {
                         HStack(alignment: .top, spacing: 20) {
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Start Date")
-                                    .font(.caption)
+                                    .font(.anton(.caption))
                                     .foregroundColor(.gray)
                                 Text(dateFormatter.string(from: data.date))
-                                    .font(.subheadline)
-                                    .fontWeight(.bold)
+                                    .font(.anton(.subheadline))
                                     .foregroundColor(.brown)
                             }
                             
                             VStack(alignment: .leading, spacing: 4) {
                                 Text("Start Date")
-                                    .font(.caption)
+                                    .font(.anton(.caption))
                                     .foregroundColor(.gray)
                                 Text(dateFormatter.string(from: data.readinessDate))
-                                    .font(.subheadline)
-                                    .fontWeight(.bold)
+                                    .font(.anton(.subheadline))
                                     .foregroundColor(.brown)
                             }
                             
@@ -101,11 +97,10 @@ struct RestraintDetailView: View {
                         // Aging Period внизу
                         VStack(alignment: .leading, spacing: 4) {
                             Text("Aging Period")
-                                .font(.caption)
+                                .font(.anton(.caption))
                                 .foregroundColor(.gray)
                             Text(data.restraintPeriod)
-                                .font(.subheadline)
-                                .fontWeight(.bold)
+                                .font(.anton(.subheadline))
                                 .foregroundColor(.brown)
                         }
                         .frame(maxWidth: .infinity, alignment: .leading)

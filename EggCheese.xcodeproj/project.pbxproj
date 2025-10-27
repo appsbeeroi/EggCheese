@@ -20,6 +20,7 @@
 		5F1C8E882EAF63F6004706C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1C8E872EAF63F6004706C2 /* LaunchScreen.storyboard */; };
 		5F1C8E8C2EAF65A2004706C2 /* OFL.txt in Resources */ = {isa = PBXBuildFile; fileRef = 5F1C8E8A2EAF65A2004706C2 /* OFL.txt */; };
 		5F1C8E8D2EAF65A2004706C2 /* Anton-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5F1C8E892EAF65A2004706C2 /* Anton-Regular.ttf */; };
+		5F1C8E8F2EAF664B004706C2 /* Font+Anton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C8E8E2EAF664B004706C2 /* Font+Anton.swift */; };
 		6665042DB04DAA7783240050 /* RestraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D6C1D04C8C29DBC6E02DA /* RestraintView.swift */; };
 		7FD0F08AC7383C4AC48E5D05 /* BatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B4220B9E14D4E7A57AC85 /* BatchDetailView.swift */; };
 		8A0902740FA58125CCF10F27 /* AddBatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A087CF8A1141D6AF929BA27F /* AddBatchView.swift */; };
@@ -54,6 +55,7 @@
 		5F1C8E872EAF63F6004706C2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5F1C8E892EAF65A2004706C2 /* Anton-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Anton-Regular.ttf"; sourceTree = "<group>"; };
 		5F1C8E8A2EAF65A2004706C2 /* OFL.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = OFL.txt; sourceTree = "<group>"; };
+		5F1C8E8E2EAF664B004706C2 /* Font+Anton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+Anton.swift"; sourceTree = "<group>"; };
 		6233E3C4C2AB1E7421DC406B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6C36C186013E41244CA4B414 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		798279E75FDDDA27E7184AC6 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -117,6 +119,7 @@
 				DCFC1C2288A275A056089089 /* SettingsView.swift */,
 				5F1C8E842EAF61BB004706C2 /* NotificationManager.swift */,
 				5F1C8E872EAF63F6004706C2 /* LaunchScreen.storyboard */,
+				5F1C8E8E2EAF664B004706C2 /* Font+Anton.swift */,
 				5F1C8E8B2EAF65A2004706C2 /* Anton */,
 			);
 			path = EggCheese;
@@ -200,6 +203,7 @@
 			files = (
 				8CD82AD7DA3E324379187529 /* AboutView.swift in Sources */,
 				8A0902740FA58125CCF10F27 /* AddBatchView.swift in Sources */,
+				5F1C8E8F2EAF664B004706C2 /* Font+Anton.swift in Sources */,
 				F2500FA8B161F98F91A1FF41 /* AddRecipeView.swift in Sources */,
 				3AF6BB496FE98D2EF6B8C22A /* AddRestraintView.swift in Sources */,
 				5F1C8E852EAF61BB004706C2 /* NotificationManager.swift in Sources */,

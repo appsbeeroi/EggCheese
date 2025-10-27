@@ -35,8 +35,7 @@ struct BatchDetailView: View {
                     
                     // Заголовок
                     Text("Edit batch")
-                        .font(.title)
-                        .fontWeight(.bold)
+                        .font(.anton(.title))
                         .foregroundColor(.white)
                     
                     Spacer()
@@ -45,7 +44,7 @@ struct BatchDetailView: View {
                     Button(action: { showingDeleteAlert = true }) {
                         Text("Delete")
                             .foregroundColor(.red)
-                            .font(.headline)
+                            .font(.anton(.headline))
                     }
                 }
                 .padding(.horizontal, 20)
@@ -63,14 +62,13 @@ struct BatchDetailView: View {
                                 .frame(width: 50, height: 50)
                             
                             Text(batch.status)
-                                .font(.headline)
+                                .font(.anton(.headline))
                                 .foregroundColor(.brown)
                         }
                         
                         // Название batch
                         Text(batch.name)
-                            .font(.title)
-                            .fontWeight(.bold)
+                            .font(.anton(.title))
                             .foregroundColor(.brown)
                         
                         // Детали

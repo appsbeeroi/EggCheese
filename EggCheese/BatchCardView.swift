@@ -27,14 +27,13 @@ struct BatchCardView: View {
                     }
                     
                     Text(batch.status)
-                        .font(.caption)
+                        .font(.anton(.caption))
                         .foregroundColor(.brown)
                 }
                 
                 // Центральная часть - только название
                 Text(batch.name)
-                    .font(.title2)
-                    .fontWeight(.bold)
+                    .font(.anton(.title2))
                     .foregroundColor(.brown)
                 
                 Spacer()
@@ -42,7 +41,7 @@ struct BatchCardView: View {
                 // Правая часть - стрелка
                 Image(systemName: "chevron.right")
                     .foregroundColor(.yellow)
-                    .font(.title3)
+                    .font(.anton(.title3))
             }
             .padding()
             .background(Color.white)

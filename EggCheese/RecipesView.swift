@@ -21,8 +21,7 @@ struct RecipesView: View {
                 
                 VStack {
                     Text("Recipes")
-                        .font(.largeTitle)
-                        .fontWeight(.bold)
+                        .font(.anton(.largeTitle))
                         .foregroundColor(.white)
                         .padding(.top, 80)
                     
@@ -32,18 +31,17 @@ struct RecipesView: View {
                             Image("cheeseImage")
                             
                             Text("Recipes not yet available")
-                                .font(.title)
-                                .fontWeight(.bold)
+                                .font(.anton(.title))
                                 .foregroundColor(.black)
                             
                             Text("Here will be your own cheese recipes")
-                                .font(.body)
+                                .font(.anton(.body))
                                 .foregroundColor(.brown)
                                 .multilineTextAlignment(.center)
                             
                             NavigationLink(destination: AddRecipeView()) {
                                 Text("Add recipe")
-                                    .font(.headline)
+                                    .font(.anton(.headline))
                                     .foregroundColor(.brown)
                                     .frame(maxWidth: .infinity)
                                     .padding()
@@ -67,7 +65,7 @@ struct RecipesView: View {
                                 // Кнопка добавления
                                 NavigationLink(destination: AddRecipeView()) {
                                     Text("Add recipe")
-                                        .font(.headline)
+                                        .font(.anton(.headline))
                                         .foregroundColor(.brown)
                                         .frame(maxWidth: .infinity)
                                         .padding()
