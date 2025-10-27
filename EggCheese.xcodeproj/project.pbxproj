@@ -17,6 +17,7 @@
 		45B039E925E280DED9ED8CD9 /* RestraintData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466018D4B828A8D95C50D66A /* RestraintData.swift */; };
 		4FC24C3CC5062F6CAB6F3F6B /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C36C186013E41244CA4B414 /* MainTabView.swift */; };
 		5F1C8E852EAF61BB004706C2 /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F1C8E842EAF61BB004706C2 /* NotificationManager.swift */; };
+		5F1C8E882EAF63F6004706C2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F1C8E872EAF63F6004706C2 /* LaunchScreen.storyboard */; };
 		6665042DB04DAA7783240050 /* RestraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F81D6C1D04C8C29DBC6E02DA /* RestraintView.swift */; };
 		7FD0F08AC7383C4AC48E5D05 /* BatchDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525B4220B9E14D4E7A57AC85 /* BatchDetailView.swift */; };
 		8A0902740FA58125CCF10F27 /* AddBatchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A087CF8A1141D6AF929BA27F /* AddBatchView.swift */; };
@@ -29,6 +30,7 @@
 		C6348D8AE79327CC2DFDA67D /* Batch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2D1D5A95F816C481BCB0C420 /* Batch.swift */; };
 		DFE8347C84594ECF4CA2A1FB /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCFC1C2288A275A056089089 /* SettingsView.swift */; };
 		E0D7BCE9BB08101846B65FDE /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 252473271AE946C0E159CDDE /* LoadingView.swift */; };
+		E0D7BCE9BB08101846B65FDF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 252473271AE946C0E159CDDF /* LaunchScreen.storyboard */; };
 		F2500FA8B161F98F91A1FF41 /* AddRecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 527EA20E89B0CBE5C26481E5 /* AddRecipeView.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,6 +39,7 @@
 		098A8DB33B2D7B4871C10CAE /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		17B58159A18B98A19FF88539 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		252473271AE946C0E159CDDE /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		252473271AE946C0E159CDDF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2D1D5A95F816C481BCB0C420 /* Batch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Batch.swift; sourceTree = "<group>"; };
 		3A85A122F4B69438E55CF658 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		40F64C133B234ED350E78A54 /* RestraintCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestraintCardView.swift; sourceTree = "<group>"; };
@@ -46,6 +49,7 @@
 		527EA20E89B0CBE5C26481E5 /* AddRecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddRecipeView.swift; sourceTree = "<group>"; };
 		5F1C8E832EAF6110004706C2 /* EggCheese.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = EggCheese.entitlements; sourceTree = "<group>"; };
 		5F1C8E842EAF61BB004706C2 /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		5F1C8E872EAF63F6004706C2 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6233E3C4C2AB1E7421DC406B /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		6C36C186013E41244CA4B414 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		798279E75FDDDA27E7184AC6 /* AboutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutView.swift; sourceTree = "<group>"; };
@@ -79,6 +83,7 @@
 				527EA20E89B0CBE5C26481E5 /* AddRecipeView.swift */,
 				8F1683D254C25AA8C0D837D9 /* AddRestraintView.swift */,
 				9B9B7AEE009ACF3437AD4D7E /* Assets.xcassets */,
+				252473271AE946C0E159CDDF /* LaunchScreen.storyboard */,
 				2D1D5A95F816C481BCB0C420 /* Batch.swift */,
 				E2E570C18B5082473B10F122 /* BatchCardView.swift */,
 				525B4220B9E14D4E7A57AC85 /* BatchDetailView.swift */,
@@ -98,6 +103,7 @@
 				F81D6C1D04C8C29DBC6E02DA /* RestraintView.swift */,
 				DCFC1C2288A275A056089089 /* SettingsView.swift */,
 				5F1C8E842EAF61BB004706C2 /* NotificationManager.swift */,
+				5F1C8E872EAF63F6004706C2 /* LaunchScreen.storyboard */,
 			);
 			path = EggCheese;
 			sourceTree = "<group>";
@@ -163,7 +169,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5F1C8E882EAF63F6004706C2 /* LaunchScreen.storyboard in Resources */,
 				A5C1C7843D8622EACE7420A0 /* Assets.xcassets in Resources */,
+				E0D7BCE9BB08101846B65FDF /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
