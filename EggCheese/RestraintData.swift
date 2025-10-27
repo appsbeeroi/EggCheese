@@ -1,7 +1,7 @@
 import Foundation
 
 struct RestraintData: Codable, Identifiable {
-    let id = UUID()
+    let id: UUID
     let name: String
     let date: Date
     let restraintPeriod: String
@@ -9,7 +9,8 @@ struct RestraintData: Codable, Identifiable {
     let notes: String
     let status: String
     
-    init(name: String, date: Date, restraintPeriod: String, readinessDate: Date, notes: String, status: String) {
+    init(name: String, date: Date, restraintPeriod: String, readinessDate: Date, notes: String, status: String, id: UUID = UUID()) {
+        self.id = id
         self.name = name
         self.date = date
         self.restraintPeriod = restraintPeriod
@@ -41,6 +42,13 @@ class RestraintManager: ObservableObject {
     
     func updateRestraintData(at index: Int, with newData: RestraintData) {
         if index < restraintData.count {
+            restraintData[index] = newData
+            saveRestraintData()
+        }
+    }
+    
+    func updateRestraintData(with newData: RestraintData) {
+        if let index = restraintData.firstIndex(where: { $0.id == newData.id }) {
             restraintData[index] = newData
             saveRestraintData()
         }

@@ -333,24 +333,40 @@ struct AddRestraintView: View {
     
     private func saveRestraintData() {
         
-        let newData = RestraintData(
-            name: name,
-            date: date,
-            restraintPeriod: restraintPeriod,
-            readinessDate: readinessDate,
-            notes: notes,
-            status: selectedStatus
-        )
+        let newData: RestraintData
+        
+        if let editingData = editingData {
+            // При редактировании сохраняем оригинальный ID
+            newData = RestraintData(
+                name: name,
+                date: date,
+                restraintPeriod: restraintPeriod,
+                readinessDate: readinessDate,
+                notes: notes,
+                status: selectedStatus,
+                id: editingData.id
+            )
+        } else {
+            // При создании нового элемента генерируем новый ID
+            newData = RestraintData(
+                name: name,
+                date: date,
+                restraintPeriod: restraintPeriod,
+                readinessDate: readinessDate,
+                notes: notes,
+                status: selectedStatus
+            )
+        }
 
-        if let editingIndex = editingIndex {
-            restraintManager.updateRestraintData(at: editingIndex, with: newData)
+        if let editingData = editingData {
+            restraintManager.updateRestraintData(with: newData)
             NotificationCenter.default.post(name: NSNotification.Name("RestraintDataUpdated"), object: nil)
+            dismiss()
         } else {
             restraintManager.addRestraintData(newData)
             NotificationCenter.default.post(name: NSNotification.Name("RestraintDataAdded"), object: nil)
+            showingDataCard = true
         }
-
-        showingDataCard = true
     }
     
     private func deleteCreatedRestraintData() {

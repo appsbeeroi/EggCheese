@@ -5,6 +5,7 @@ struct RestraintDetailView: View {
     @Environment(\.dismiss) private var dismiss
     @EnvironmentObject var restraintManager: RestraintManager
     @State private var showingDeleteAlert = false
+    @State private var showingEditSheet = false
     
     private var restraintIndex: Int? {
         restraintManager.restraintData.firstIndex { $0.id == data.id }
@@ -37,8 +38,8 @@ struct RestraintDetailView: View {
                     Spacer()
 
                     HStack(spacing: 15) {
-                        if let index = restraintIndex {
-                            NavigationLink(destination: AddRestraintView(editingData: data, editingIndex: index).environmentObject(restraintManager)) {
+                        if restraintIndex != nil {
+                            Button(action: { showingEditSheet = true }) {
                                 Text("Edit")
                                     .foregroundColor(.blue)
                                     .font(.anton(.headline))
@@ -138,6 +139,14 @@ struct RestraintDetailView: View {
         } message: {
             Text("Are you sure you want to delete this restraint data?")
         }
+        .sheet(isPresented: $showingEditSheet) {
+            if let index = restraintIndex {
+                AddRestraintView(editingData: data, editingIndex: index)
+                    .environmentObject(restraintManager)
+            }
+        }
+        .presentationDetents([.large])
+        .presentationDragIndicator(.visible)
     }
     
     private func deleteRestraintDataFromUserDefaults(_ data: RestraintData) {
