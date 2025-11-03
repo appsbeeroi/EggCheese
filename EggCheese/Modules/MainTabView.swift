@@ -9,16 +9,16 @@ struct MainTabView: View {
             
             Group {
                 switch selectedTab {
-                case 0:
-                    BathView()
-                case 1:
-                    RecipesView()
-                case 2:
-                    RestraintView()
-                case 3:
-                    SettingsView()
-                default:
-                    BathView()
+                    case 0:
+                        BathView(hideTabBar: $hideTabBar)
+                    case 1:
+                        RecipesView(hideTabBar: $hideTabBar)
+                    case 2:
+                        RestraintView(hideTabBar: $hideTabBar)
+                    case 3:
+                        SettingsView(hideTabBar: $hideTabBar)
+                    default:
+                        BathView(hideTabBar: $hideTabBar)
                 }
             }
 
@@ -73,16 +73,6 @@ struct MainTabView: View {
                     }
                     .padding(.bottom, 20)
                 }
-            }
-        }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("HideTabBar"))) { _ in
-            withAnimation {
-                hideTabBar = true
-            }
-        }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("ShowTabBar"))) { _ in
-            withAnimation {
-                hideTabBar = false
             }
         }
     }

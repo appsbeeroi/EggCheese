@@ -27,10 +27,8 @@ struct ContentView: View {
         let hasLaunchedBefore = UserDefaults.standard.bool(forKey: "HasLaunchedBefore")
         
         if !hasLaunchedBefore {
-            // Первый запуск
             UserDefaults.standard.set(true, forKey: "HasLaunchedBefore")
             
-            // Запрашиваем разрешение на уведомления через небольшую задержку
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
                 notificationManager.requestPermission()
             }

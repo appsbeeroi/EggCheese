@@ -1,13 +1,14 @@
 import Foundation
 
 struct Recipe: Codable, Identifiable {
-    let id = UUID()
+    let id: UUID
     let name: String
     let ingredients: [String]
     let preparationSteps: [String]
     let notes: String
     
-    init(name: String, ingredients: [String], preparationSteps: [String], notes: String) {
+    init(id: UUID, name: String, ingredients: [String], preparationSteps: [String], notes: String) {
+        self.id = id
         self.name = name
         self.ingredients = ingredients
         self.preparationSteps = preparationSteps

@@ -8,7 +8,6 @@ struct LoadingView: View {
             
             Image("loading")
                 .resizable()
-//                .aspectRatio(contentMode: .fill)
                 .ignoresSafeArea()
         }
         .onAppear {

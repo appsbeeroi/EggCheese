@@ -119,14 +119,6 @@ struct RestraintDetailView: View {
             }
         }
         .navigationBarHidden(true)
-        .onAppear {
-            
-            NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
-        }
-        .onDisappear {
-            
-            NotificationCenter.default.post(name: NSNotification.Name("ShowTabBar"), object: nil)
-        }
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {

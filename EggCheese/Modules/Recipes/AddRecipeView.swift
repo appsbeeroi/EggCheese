@@ -34,7 +34,9 @@ struct AddRecipeView: View {
                 
                 HStack {
                     
-                    Button(action: { dismiss() }) {
+                    Button(action: {
+                        dismiss()
+                    }) {
                         Image("backButton")
                             .resizable()
                             .frame(width: 30, height: 30)
@@ -72,7 +74,7 @@ struct AddRecipeView: View {
                     }
                 }
                 .padding(.horizontal, 20)
-                .padding(.top, 90)
+                .padding(.top, 60)
 
                 if !showingRecipeCard {
                     ScrollView {
@@ -236,13 +238,7 @@ struct AddRecipeView: View {
                 ingredientsText = editingRecipe.ingredients.joined(separator: "\n")
                 preparationStepsText = editingRecipe.preparationSteps.joined(separator: "\n")
                 notes = editingRecipe.notes
-            }
-            
-            NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
-        }
-        .onDisappear {
-            
-            NotificationCenter.default.post(name: NSNotification.Name("ShowTabBar"), object: nil)
+            }            
         }
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
@@ -258,6 +254,7 @@ struct AddRecipeView: View {
     
     private func saveRecipe() {
         let newRecipe = Recipe(
+            id: editingRecipe?.id ?? UUID(),
             name: name,
             ingredients: ingredientsText.components(separatedBy: "\n").filter { !$0.isEmpty },
             preparationSteps: preparationStepsText.components(separatedBy: "\n").filter { !$0.isEmpty },
@@ -271,8 +268,8 @@ struct AddRecipeView: View {
             recipeManager.addRecipe(newRecipe)
             NotificationCenter.default.post(name: NSNotification.Name("RecipeAdded"), object: nil)
         }
-
-        showingRecipeCard = true
+dismiss()
+//        showingRecipeCard = true
     }
     
     private func deleteCreatedRecipe() {

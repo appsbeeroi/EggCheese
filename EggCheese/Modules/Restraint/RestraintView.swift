@@ -1,39 +1,43 @@
 import SwiftUI
 
-struct RecipesView: View {
-    @StateObject private var recipeManager = RecipeManager()
-    
+struct RestraintView: View {
+    @StateObject private var restraintManager = RestraintManager()
+    @Binding var hideTabBar: Bool 
     var body: some View {
         NavigationStack {
             ZStack {
-                
                 Image("background")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
                 
                 VStack {
-                    Text("Recipes")
+                    Text("Restraint & readiness")
                         .font(.anton(.largeTitle))
                         .foregroundColor(.white)
                         .padding(.top, 80)
                     
-                    if recipeManager.recipes.isEmpty {
+                    if restraintManager.restraintData.isEmpty {
                         
                         VStack(spacing: 20) {
                             Image("cheeseImage")
                             
-                            Text("Recipes not yet available")
+                            Text("No retention data")
                                 .font(.anton(.title))
                                 .foregroundColor(.black)
                             
-                            Text("Here will be your own cheese recipes")
+                            Text("There are currently no batches to track ripening times")
                                 .font(.anton(.body))
                                 .foregroundColor(.brown)
                                 .multilineTextAlignment(.center)
                             
-                            NavigationLink(destination: AddRecipeView().environmentObject(recipeManager)) {
-                                Text("Add recipe")
+                            NavigationLink(destination: AddRestraintView()
+                                .environmentObject(restraintManager)
+                                .onAppear {
+                                    hideTabBar = true
+                                }
+                            ) {
+                                Text("Add data")
                                     .font(.anton(.headline))
                                     .foregroundColor(.brown)
                                     .frame(maxWidth: .infinity)
@@ -51,13 +55,18 @@ struct RecipesView: View {
                         
                         ScrollView {
                             LazyVStack(spacing: 15) {
-                                ForEach(recipeManager.recipes, id: \.id) { recipe in
-                                    RecipeCardView(recipe: recipe)
-                                        .environmentObject(recipeManager)
+                                ForEach(restraintManager.restraintData, id: \.id) { data in
+                                    RestraintCardView(data: data, hideTabBar: $hideTabBar)
+                                        .environmentObject(restraintManager)
                                 }
 
-                                NavigationLink(destination: AddRecipeView().environmentObject(recipeManager)) {
-                                    Text("Add recipe")
+                                NavigationLink(destination: AddRestraintView()
+                                    .environmentObject(restraintManager)
+                                    .onAppear {
+                                        hideTabBar = true 
+                                    }
+                                ) {
+                                    Text("Add data")
                                         .font(.anton(.headline))
                                         .foregroundColor(.brown)
                                         .frame(maxWidth: .infinity)
@@ -70,31 +79,32 @@ struct RecipesView: View {
                             .padding(.horizontal, 20)
                             .padding(.top, 20)
                         }
+                        .padding(.bottom, 180)
                     }
                     
                     Spacer()
                 }
             }
+            .onAppear {
+                hideTabBar = false
+                restraintManager.loadRestraintData()
+            }
         }
-        .onAppear {
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RestraintDataAdded"))) { _ in
             
-            recipeManager.loadRecipes()
+            restraintManager.loadRestraintData()
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RecipeAdded"))) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RestraintDataDeleted"))) { _ in
             
-            recipeManager.loadRecipes()
+            restraintManager.loadRestraintData()
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RecipeDeleted"))) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RestraintDataUpdated"))) { _ in
             
-            recipeManager.loadRecipes()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RecipeUpdated"))) { _ in
-            
-            recipeManager.loadRecipes()
+            restraintManager.loadRestraintData()
         }
     }
 }
 
 #Preview {
-    RecipesView()
+    RestraintView(hideTabBar: .constant(false))
 }

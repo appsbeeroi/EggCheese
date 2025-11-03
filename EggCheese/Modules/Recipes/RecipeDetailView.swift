@@ -23,7 +23,9 @@ struct RecipeDetailView: View {
                 
                 HStack {
                     
-                    Button(action: { dismiss() }) {
+                    Button(action: {
+                        dismiss()
+                    }) {
                         Image("backButton")
                             .resizable()
                             .frame(width: 30, height: 30)
@@ -54,8 +56,8 @@ struct RecipeDetailView: View {
                     }
                 }
                 .padding(.horizontal, 20)
-                .padding(.top, 90)
-
+                .padding(.top, 60)
+                
                 VStack {
                     Spacer()
                         .frame(height: 20)
@@ -124,14 +126,6 @@ struct RecipeDetailView: View {
             }
         }
         .navigationBarHidden(true)
-        .onAppear {
-            
-            NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
-        }
-        .onDisappear {
-            
-            NotificationCenter.default.post(name: NSNotification.Name("ShowTabBar"), object: nil)
-        }
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
@@ -163,6 +157,7 @@ struct RecipeDetailView: View {
 
 #Preview {
     RecipeDetailView(recipe: Recipe(
+        id: UUID(),
         name: "Golden Soft",
         ingredients: ["Goat milk 8 L", "Rennet 0.5 tsp", "Salt 30 g"],
         preparationSteps: ["Heat milk", "Add rennet", "Mold", "Age"],

@@ -1,39 +1,43 @@
 import SwiftUI
 
-struct BathView: View {
-    @StateObject private var batchManager = BatchManager()
-    
+struct RecipesView: View {
+    @StateObject private var recipeManager = RecipeManager()
+    @Binding var hideTabBar: Bool 
     var body: some View {
         NavigationStack {
             ZStack {
-                
                 Image("background")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
                 
                 VStack {
-                    Text("Batch Counting")
+                    Text("Recipes")
                         .font(.anton(.largeTitle))
                         .foregroundColor(.white)
-                        .padding(.top, 80)
+                        .padding(.top, 60)
                     
-                    if batchManager.batches.isEmpty {
+                    if recipeManager.recipes.isEmpty {
                         
                         VStack(spacing: 20) {
-                            Image("bathImage")
+                            Image("cheeseImage")
                             
-                            Text("No parties yet")
+                            Text("Recipes not yet available")
                                 .font(.anton(.title))
                                 .foregroundColor(.black)
                             
-                            Text("You have not added a single batch of cheese yet")
+                            Text("Here will be your own cheese recipes")
                                 .font(.anton(.body))
                                 .foregroundColor(.brown)
                                 .multilineTextAlignment(.center)
                             
-                            NavigationLink(destination: AddBatchView().environmentObject(batchManager)) {
-                                Text("Add batch")
+                            NavigationLink(destination: AddRecipeView()
+                                .environmentObject(recipeManager)
+                                .onAppear {
+                                    hideTabBar = true
+                                }
+                            ) {
+                                Text("Add recipe")
                                     .font(.anton(.headline))
                                     .foregroundColor(.brown)
                                     .frame(maxWidth: .infinity)
@@ -51,13 +55,20 @@ struct BathView: View {
                         
                         ScrollView {
                             LazyVStack(spacing: 15) {
-                                ForEach(batchManager.batches, id: \.id) { batch in
-                                    BatchCardView(batch: batch)
-                                        .environmentObject(batchManager)
+                                ForEach(recipeManager.recipes, id: \.id) { recipe in
+                                    RecipeCardView(recipe: recipe, hideTabBar: $hideTabBar)
+                                        .environmentObject(recipeManager)
                                 }
 
-                                NavigationLink(destination: AddBatchView().environmentObject(batchManager)) {
-                                    Text("Add batch")
+                                NavigationLink(
+                                    destination:
+                                        AddRecipeView()
+                                        .environmentObject(recipeManager)
+                                        .onAppear {
+                                            hideTabBar = true
+                                        }
+                                ) {
+                                    Text("Add recipe")
                                         .font(.anton(.headline))
                                         .foregroundColor(.brown)
                                         .frame(maxWidth: .infinity)
@@ -70,32 +81,34 @@ struct BathView: View {
                             .padding(.horizontal, 20)
                             .padding(.top, 20)
                         }
-                        .padding(.bottom, 180)
-
                     }
                     
                     Spacer()
                 }
             }
+            .onAppear {
+                hideTabBar = false 
+            }
         }
         .onAppear {
-            batchManager.loadBatches()
+            hideTabBar = false
+            recipeManager.loadRecipes()
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchAdded"))) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RecipeAdded"))) { _ in
             
-            batchManager.loadBatches()
+            recipeManager.loadRecipes()
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchDeleted"))) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RecipeDeleted"))) { _ in
             
-            batchManager.loadBatches()
+            recipeManager.loadRecipes()
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchUpdated"))) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RecipeUpdated"))) { _ in
             
-            batchManager.loadBatches()
+            recipeManager.loadRecipes()
         }
     }
 }
 
 #Preview {
-    BathView()
+    RecipesView(hideTabBar: .constant(false))
 }

@@ -2,12 +2,18 @@ import SwiftUI
 
 struct RecipeCardView: View {
     let recipe: Recipe
+    @Binding var hideTabBar: Bool
     @EnvironmentObject var recipeManager: RecipeManager
     
     var body: some View {
-        NavigationLink(destination: RecipeDetailView(recipe: recipe).environmentObject(recipeManager)) {
+        NavigationLink(
+            destination: RecipeDetailView(recipe: recipe)
+                .environmentObject(recipeManager)
+                .onAppear {
+                    hideTabBar = true 
+                }
+        ) {
             HStack(spacing: 0) {
-                
                 ZStack {
 
                     Image("cheeseImage")
@@ -39,10 +45,11 @@ struct RecipeCardView: View {
 
 #Preview {
     RecipeCardView(recipe: Recipe(
+        id: UUID(),
         name: "Golden Soft",
         ingredients: ["Goat milk 8 L", "Rennet 0.5 tsp", "Salt 30 g"],
         preparationSteps: ["Heat milk", "Add rennet", "Mold", "Age"],
         notes: "Very delicate texture"
-    ))
+    ), hideTabBar: .constant(false))
     .environmentObject(RecipeManager())
 }

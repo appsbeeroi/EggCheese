@@ -1,11 +1,19 @@
 import SwiftUI
 
 struct BatchCardView: View {
+    
     let batch: Batch
     @EnvironmentObject var batchManager: BatchManager
+    @Binding var hideTabBar: Bool
     
     var body: some View {
-        NavigationLink(destination: BatchDetailView(batch: batch).environmentObject(batchManager)) {
+        NavigationLink(
+            destination: BatchDetailView(batch: batch)
+                .environmentObject(batchManager)
+                .onAppear {
+                    hideTabBar = true
+                }
+        ) {
             HStack(spacing: 15) {
                 
                 VStack(spacing: 8) {
@@ -45,6 +53,7 @@ struct BatchCardView: View {
 
 #Preview {
     BatchCardView(batch: Batch(
+        id: UUID(),
         name: "Alpine Brine",
         date: Date(),
         cheeseType: "Mold Cheese",
@@ -52,6 +61,6 @@ struct BatchCardView: View {
         volume: "8 kg",
         status: "In production",
         notes: "Added a bit of sea salt"
-    ))
+    ), hideTabBar: .constant(false))
     .environmentObject(BatchManager())
 }

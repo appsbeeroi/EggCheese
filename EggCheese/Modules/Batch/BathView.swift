@@ -1,7 +1,8 @@
 import SwiftUI
 
-struct RestraintView: View {
-    @StateObject private var restraintManager = RestraintManager()
+struct BathView: View {
+    @StateObject private var batchManager = BatchManager()
+    @Binding var hideTabBar: Bool
     
     var body: some View {
         NavigationStack {
@@ -13,27 +14,33 @@ struct RestraintView: View {
                     .ignoresSafeArea()
                 
                 VStack {
-                    Text("Restraint & readiness")
+                    Text("Batch Counting")
                         .font(.anton(.largeTitle))
                         .foregroundColor(.white)
                         .padding(.top, 80)
                     
-                    if restraintManager.restraintData.isEmpty {
+                    if batchManager.batches.isEmpty {
                         
                         VStack(spacing: 20) {
-                            Image("cheeseImage")
+                            Image("bathImage")
                             
-                            Text("No retention data")
+                            Text("No parties yet")
                                 .font(.anton(.title))
                                 .foregroundColor(.black)
                             
-                            Text("There are currently no batches to track ripening times")
+                            Text("You have not added a single batch of cheese yet")
                                 .font(.anton(.body))
                                 .foregroundColor(.brown)
                                 .multilineTextAlignment(.center)
                             
-                            NavigationLink(destination: AddRestraintView().environmentObject(restraintManager)) {
-                                Text("Add data")
+                            NavigationLink(
+                                destination: AddBatchView()
+                                    .environmentObject(batchManager)
+                                    .onAppear {
+                                        hideTabBar = true
+                                    })
+                            {
+                                Text("Add batch")
                                     .font(.anton(.headline))
                                     .foregroundColor(.brown)
                                     .frame(maxWidth: .infinity)
@@ -51,13 +58,19 @@ struct RestraintView: View {
                         
                         ScrollView {
                             LazyVStack(spacing: 15) {
-                                ForEach(restraintManager.restraintData, id: \.id) { data in
-                                    RestraintCardView(data: data)
-                                        .environmentObject(restraintManager)
+                                ForEach(batchManager.batches, id: \.id) { batch in
+                                    BatchCardView(batch: batch, hideTabBar: $hideTabBar)
+                                        .environmentObject(batchManager)
                                 }
-
-                                NavigationLink(destination: AddRestraintView().environmentObject(restraintManager)) {
-                                    Text("Add data")
+                                
+                                NavigationLink(
+                                    destination: AddBatchView()
+                                        .environmentObject(batchManager)
+                                        .onAppear {
+                                            hideTabBar = true
+                                        }
+                                ) {
+                                    Text("Add batch")
                                         .font(.anton(.headline))
                                         .foregroundColor(.brown)
                                         .frame(maxWidth: .infinity)
@@ -71,31 +84,32 @@ struct RestraintView: View {
                             .padding(.top, 20)
                         }
                         .padding(.bottom, 180)
+                        
                     }
                     
                     Spacer()
                 }
             }
+            .onAppear {
+                hideTabBar = false
+                batchManager.loadBatches()
+            }
         }
-        .onAppear {
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchAdded"))) { _ in
             
-            restraintManager.loadRestraintData()
+            batchManager.loadBatches()
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RestraintDataAdded"))) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchDeleted"))) { _ in
             
-            restraintManager.loadRestraintData()
+            batchManager.loadBatches()
         }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RestraintDataDeleted"))) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("BatchUpdated"))) { _ in
             
-            restraintManager.loadRestraintData()
-        }
-        .onReceive(NotificationCenter.default.publisher(for: NSNotification.Name("RestraintDataUpdated"))) { _ in
-            
-            restraintManager.loadRestraintData()
+            batchManager.loadBatches()
         }
     }
 }
 
 #Preview {
-    RestraintView()
+    BathView(hideTabBar: .constant(false))
 }

@@ -27,7 +27,6 @@ struct AddRestraintView: View {
     
     var body: some View {
         ZStack {
-            
             Image("background")
                 .resizable()
                 .aspectRatio(contentMode: .fill)
@@ -75,7 +74,7 @@ struct AddRestraintView: View {
                     }
                 }
                 .padding(.horizontal, 20)
-                .padding(.top, 90)
+                .padding(.top, 60)
 
                 if !showingDataCard {
                     ScrollView {
@@ -311,13 +310,7 @@ struct AddRestraintView: View {
                 readinessDate = editingData.readinessDate
                 notes = editingData.notes
                 selectedStatus = editingData.status
-            }
-            
-            NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
-        }
-        .onDisappear {
-            
-            NotificationCenter.default.post(name: NSNotification.Name("ShowTabBar"), object: nil)
+            }            
         }
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
@@ -336,7 +329,6 @@ struct AddRestraintView: View {
         let newData: RestraintData
         
         if let editingData = editingData {
-            // При редактировании сохраняем оригинальный ID
             newData = RestraintData(
                 name: name,
                 date: date,
@@ -347,7 +339,6 @@ struct AddRestraintView: View {
                 id: editingData.id
             )
         } else {
-            // При создании нового элемента генерируем новый ID
             newData = RestraintData(
                 name: name,
                 date: date,

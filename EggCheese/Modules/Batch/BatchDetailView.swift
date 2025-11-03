@@ -96,13 +96,6 @@ struct BatchDetailView: View {
             }
         }
         .navigationBarHidden(true)
-        .onAppear {
-            NotificationCenter.default.post(name: NSNotification.Name("HideTabBar"), object: nil)
-        }
-        .onDisappear {
-            
-            NotificationCenter.default.post(name: NSNotification.Name("ShowTabBar"), object: nil)
-        }
         .alert("Delete", isPresented: $showingDeleteAlert) {
             Button("Cancel", role: .cancel) { }
             Button("Delete", role: .destructive) {
@@ -149,6 +142,7 @@ struct BatchDetailView: View {
 
 #Preview {
     BatchDetailView(batch: Batch(
+        id: UUID(),
         name: "Alpine Brine",
         date: Date(),
         cheeseType: "Mold Cheese",

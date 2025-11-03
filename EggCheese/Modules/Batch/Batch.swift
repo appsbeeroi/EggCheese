@@ -1,7 +1,7 @@
 import Foundation
 
 struct Batch: Codable, Identifiable {
-    let id = UUID()
+    let id: UUID
     let name: String
     let date: Date
     let cheeseType: String
@@ -10,7 +10,17 @@ struct Batch: Codable, Identifiable {
     let status: String
     let notes: String
     
-    init(name: String, date: Date, cheeseType: String, milkType: String, volume: String, status: String, notes: String) {
+    init(
+        id: UUID,
+        name: String,
+        date: Date,
+        cheeseType: String,
+        milkType: String,
+        volume: String,
+        status: String,
+        notes: String
+    ) {
+        self.id = id 
         self.name = name
         self.date = date
         self.cheeseType = cheeseType

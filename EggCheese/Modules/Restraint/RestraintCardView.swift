@@ -3,9 +3,16 @@ import SwiftUI
 struct RestraintCardView: View {
     let data: RestraintData
     @EnvironmentObject var restraintManager: RestraintManager
+    @Binding var hideTabBar: Bool
     
     var body: some View {
-        NavigationLink(destination: RestraintDetailView(data: data).environmentObject(restraintManager)) {
+        NavigationLink(
+            destination: RestraintDetailView(data: data)
+                .environmentObject(restraintManager)
+                .onAppear {
+                    hideTabBar = true
+                }
+        ) {
             HStack(spacing: 15) {
                 
                 VStack(spacing: 8) {
@@ -69,6 +76,6 @@ struct RestraintCardView: View {
         readinessDate: Calendar.current.date(byAdding: .day, value: 30, to: Date()) ?? Date(),
         notes: "Track ripening progress",
         status: "In production"
-    ))
+    ), hideTabBar: .constant(false))
     .environmentObject(RestraintManager())
 }
